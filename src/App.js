@@ -1,13 +1,19 @@
-import "./App.css";
+import Navbar from "./components/navbar";
+import "./styles/globalStyles.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello Coder World!</h1>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <section id="homeSection">
+        <div className="container">
+          <div className="homeSection__content">
+            <h1>Hello Coder World!</h1>
+          </div>
+        </div>
+      </section>
+    </>
   );
-}
+};
 
 export default App;
