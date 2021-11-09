@@ -1,11 +1,11 @@
 import React from "react";
 import { navList } from "../../domain/navigationList";
 import Container from "../common/container";
-import CartWidget from "./cart";
+import CartWidget from "./cart-widget";
 import NavItem from "./navItem";
 import { Brand, Content, Header, Nav, NavList } from "./styles";
 
-const Navbar = () => {
+const Navbar = ({ counter }) => {
   return (
     <Header role="banner">
       <Container>
@@ -22,7 +22,7 @@ const Navbar = () => {
                   </a>
                 </NavItem>
               ))}
-              <CartWidget />
+              <CartWidget count={counter} />
             </NavList>
           </Nav>
         </Content>

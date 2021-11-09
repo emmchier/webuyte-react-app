@@ -1,10 +1,20 @@
 import React from "react";
+import ItemList from "./item-list";
 import { List } from "./styles";
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = ({ itemList, counterCart, setCounterCart }) => {
   return (
     <List>
-      <li>{greeting}</li>
+      {itemList.map((item) => (
+        <ItemList
+          key={item.id}
+          image={item.image}
+          alt={item.title}
+          title={item.title}
+          counterCart={counterCart}
+          setCounterCart={setCounterCart}
+        />
+      ))}
     </List>
   );
 };

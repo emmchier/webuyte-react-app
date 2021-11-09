@@ -9,6 +9,7 @@ export const theme = {
       secondary: "#5b3bda",
       secondaryDark: "#0d0ca7",
       secondaryLight: "#9368ff",
+      hoverButton: "#f3edff",
     },
     text: {
       primary: "#333333",
@@ -47,5 +48,12 @@ export const theme = {
     radius: {
       main: "8px",
     },
+  },
+  breakpoints: {
+    smallMobile: "max-width: 479px",
+    mobile: "max-width: 767px",
+    tablet: "max-width: 991px",
+    tabletLandscape: "max-width: 1199px",
+    desktop: "max-width: 1599px",
   },
 };
