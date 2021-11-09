@@ -1,18 +1,15 @@
 import Navbar from "./components/navbar";
-import "./styles/globalStyles.css";
+import HomePage from "./pages/home";
+import MainTheme from "./providers/MainThemeProvider";
+import { GlobalStyles } from "./styles/globalStyles";
 
 const App = () => {
   return (
-    <>
+    <MainTheme>
+      <GlobalStyles />
       <Navbar />
-      <section id="homeSection">
-        <div className="container">
-          <div className="homeSection__content">
-            <h1>Hello Coder World!</h1>
-          </div>
-        </div>
-      </section>
-    </>
+      <HomePage />
+    </MainTheme>
   );
 };
 

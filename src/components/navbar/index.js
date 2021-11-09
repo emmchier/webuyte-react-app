@@ -1,46 +1,33 @@
 import React from "react";
-import "./styles.css";
-
-const navList = [
-  {
-    id: 0,
-    navItem: "Products",
-    to: "#!",
-  },
-  {
-    id: 1,
-    navItem: "About",
-    to: "#!",
-  },
-  {
-    id: 2,
-    navItem: "Contact",
-    to: "#!",
-  },
-];
+import { navList } from "../../domain/navigationList";
+import Container from "../common/container";
+import CartWidget from "./cart";
+import NavItem from "./navItem";
+import { Brand, Content, Header, Nav, NavList } from "./styles";
 
 const Navbar = () => {
   return (
-    <header className="navbar" role="banner">
-      <div className="container">
-        <div className="navbar__content">
-          <a href="/" className="nabvar__brand" aria-label="link">
-            LOGO
-          </a>
-          <nav className="navbar__nav">
-            <ul className="navbar__list">
+    <Header role="banner">
+      <Container>
+        <Content>
+          <Brand href="/" aria-label="link">
+            WeBuyt
+          </Brand>
+          <Nav>
+            <NavList>
               {navList.map((item) => (
-                <li key={item.id} className="navbar__list--item">
+                <NavItem key={item.id} className="navbar__list--item">
                   <a href={`/${item.to}`} aria-label="link">
                     {item.navItem}
                   </a>
-                </li>
+                </NavItem>
               ))}
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+              <CartWidget />
+            </NavList>
+          </Nav>
+        </Content>
+      </Container>
+    </Header>
   );
 };
 
