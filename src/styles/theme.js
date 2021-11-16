@@ -20,7 +20,7 @@ export const theme = {
     grey: "#404040",
     white: "#FFFFFF",
     black: "#212121",
-    translucent: "#00000069",
+    overlay: "#00000069",
   },
   font: {
     size: {
@@ -35,11 +35,10 @@ export const theme = {
     space20: "1.25em", // 20px
     space30: "1.875em", // 30px
     space80: "5em", // 80px
+    space100: "6.25em", // 100px
   },
   shadow: {
-    main: ` 0 8px 17px 2px rgba(71, 69, 69, 0.023),
-            0 3px 14px 2px rgba(71, 69, 69, 0.023),
-            0 5px 5px -3px rgba(107, 35, 35, 0.023)`,
+    main: "0px 0px 1px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(76, 81, 191, 0.12), 0px 10px 20px rgba(76, 81, 191, 0.18);",
   },
   transition: {
     main: "0.1s ease-in-out",

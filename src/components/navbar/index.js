@@ -11,7 +11,7 @@ const Navbar = ({ counter }) => {
       <Container>
         <Content>
           <Brand href="/" aria-label="link">
-            WeBuyt
+            WineByWine
           </Brand>
           <Nav>
             <NavList>

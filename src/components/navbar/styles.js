@@ -6,6 +6,7 @@ export const Header = styled.header`
   padding: 0;
   margin: 0;
   box-shadow: ${({ theme }) => theme.shadow.main};
+  background-color: ${({ theme }) => theme.color.white};
 `;
 
 export const Content = styled.div`

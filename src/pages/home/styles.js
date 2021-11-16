@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
 export const Section = styled.section`
-  padding-top: ${({ theme }) => theme.spacing.space80};
+  padding: ${({ theme }) => theme.spacing.space100} 0;
 `;

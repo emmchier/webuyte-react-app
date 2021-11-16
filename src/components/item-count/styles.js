@@ -4,15 +4,16 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${({ theme }) => theme.spacing.space8};
   border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: ${({ theme }) => theme.border.radius.main};
-  margin-bottom: ${({ theme }) => theme.spacing.space10};
+  margin-bottom: ${({ theme }) => theme.spacing.space20};
+  width: 100%;
 
   button {
-    width: 35px;
-    height: 35px;
+    width: 35px !important;
+    height: 35px !important;
     padding: ${({ theme }) => theme.spacing.space8};
+    margin: ${({ theme }) => theme.spacing.space8};
     border-radius: 50%;
   }
 `;
