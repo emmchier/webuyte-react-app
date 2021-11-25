@@ -13,7 +13,7 @@ import {
   ActionButtons,
 } from "./styles";
 
-const Item = ({ item }) => {
+const Item = ({ item, isDetailVisible, setIsDetailVisible }) => {
   const { pictureUrl, alt, title, description, price } = item;
 
   const [initial, setInitial] = useState(1);
@@ -33,7 +33,12 @@ const Item = ({ item }) => {
         </StockContainer>
         <ItemCount stock={stock} initial={initial} setInitial={setInitial} />
         <ActionButtons>
-          <Button variant="outlined">Ver detalle</Button>
+          <Button
+            variant="outlined"
+            onClick={() => setIsDetailVisible(!isDetailVisible)}
+          >
+            Ver detalle
+          </Button>
           <Button variant="contained">Agregar al carrito</Button>
         </ActionButtons>
       </ProductInfo>
