@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import { getData } from "../../actions";
-import { wineList } from "../../domain/wineDataList";
 import ItemList from "./item-list";
 
-const ItemListContainer = ({ isDetailVisible, setIsDetailVisible }) => {
+const ItemListContainer = ({ list, isDetailVisible, setIsDetailVisible }) => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    getData(wineList)
+    getData(list)
       .then((res) => setProductList(res))
       .catch((err) => console.log(err));
   }, []);

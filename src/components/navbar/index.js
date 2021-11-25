@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import { navList } from "../../domain/navigationList";
 import Container from "../common/container";
 import CartWidget from "./cart-widget";
@@ -10,16 +11,16 @@ const Navbar = ({ counter }) => {
     <Header role="banner">
       <Container>
         <Content>
-          <Brand href="/" aria-label="link">
-            WineByWine
-          </Brand>
+          <Link to="/">
+            <Brand aria-label="link">WineByWine</Brand>
+          </Link>
           <Nav>
             <NavList>
               {navList.map((item) => (
-                <NavItem key={item.id} className="navbar__list--item">
-                  <a href={`/${item.to}`} aria-label="link">
+                <NavItem key={item.id}>
+                  <NavLink to={item.to} aria-label="link">
                     {item.navItem}
-                  </a>
+                  </NavLink>
                 </NavItem>
               ))}
               <CartWidget count={counter} />

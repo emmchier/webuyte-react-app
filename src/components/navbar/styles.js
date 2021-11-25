@@ -16,7 +16,7 @@ export const Content = styled.div`
   padding: ${({ theme }) => theme.spacing.space8} 0;
 `;
 
-export const Brand = styled.a`
+export const Brand = styled.h1`
   font-weight: 800;
   font-size: ${({ theme }) => theme.font.size.primary};
   color: ${({ theme }) => theme.color.primary};

@@ -5,16 +5,16 @@ import ItemDetail from "../item-detail";
 import { Container } from "./styles";
 
 const ItemDetailContainer = ({
-  item = {},
   isDetailVisible,
   setIsDetailVisible,
+  itemDetailData,
 }) => {
   return (
     <Container>
       <Button onClick={() => setIsDetailVisible(!isDetailVisible)}>
         Volver
       </Button>
-      <ItemDetail {...item} />
+      <ItemDetail item={itemDetailData} />
     </Container>
   );
 };

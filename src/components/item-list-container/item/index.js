@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "../../common/button";
 import ItemCount from "../../item-count";
 import {
@@ -14,10 +15,14 @@ import {
 } from "./styles";
 
 const Item = ({ item, isDetailVisible, setIsDetailVisible }) => {
-  const { pictureUrl, alt, title, description, price } = item;
+  const { id, pictureUrl, alt, title, description, price } = item;
 
   const [initial, setInitial] = useState(1);
   const [stock] = useState(5);
+
+  const handleDetail = () => {
+    setIsDetailVisible(!isDetailVisible);
+  };
 
   return (
     <Content>
@@ -33,12 +38,12 @@ const Item = ({ item, isDetailVisible, setIsDetailVisible }) => {
         </StockContainer>
         <ItemCount stock={stock} initial={initial} setInitial={setInitial} />
         <ActionButtons>
-          <Button
-            variant="outlined"
-            onClick={() => setIsDetailVisible(!isDetailVisible)}
-          >
-            Ver detalle
-          </Button>
+          <Link to={`/item/${id}`}>
+            <Button variant="outlined" onClick={handleDetail}>
+              Ver detalle
+            </Button>
+          </Link>
+
           <Button variant="contained">Agregar al carrito</Button>
         </ActionButtons>
       </ProductInfo>

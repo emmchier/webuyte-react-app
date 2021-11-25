@@ -10,18 +10,9 @@ import {
   Price,
 } from "./styles";
 
-const ItemDetail = ({
-  pictureUrl = "https://cdn.shopify.com/s/files/1/0083/7130/6547/products/old_atlanta_red_-_front_grande.png?v=1567096230",
-  title = "Nombre",
-  price = "350",
-  description = "Lalalalalla",
-}) => {
-  // const {
-  //   pictureUrl = "https://cdn.shopify.com/s/files/1/0083/7130/6547/products/old_atlanta_red_-_front_grande.png?v=1567096230",
-  //   title = "Nombre",
-  //   price = "350",
-  //   description = "Lalalalalla",
-  // } = item;
+const ItemDetail = ({ item }) => {
+  console.log(item);
+  const { pictureUrl, title, price, description } = item;
 
   return (
     <Container>

@@ -7,11 +7,11 @@ export const navList = [
   {
     id: 1,
     navItem: "Sobre nosotros",
-    to: "#!",
+    to: "/nosotros",
   },
   {
     id: 2,
     navItem: "Contacto",
-    to: "#!",
+    to: "/contacto",
   },
 ];
