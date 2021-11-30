@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { wineList } from "../../../domain/wineDataList";
+import Container from "../../common/container";
 
 import ItemDetail from "../item-detail";
-import { Container } from "./styles";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});

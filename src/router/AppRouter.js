@@ -8,6 +8,7 @@ import ItemListContainer from "../components/item-list-container";
 import ItemDetailContainer from "../components/detail/item-detail-container";
 import AboutPage from "../pages/about";
 import ContactPage from "../pages/contact";
+import CartPage from "../pages/cart";
 
 import { Body } from "./styles";
 
@@ -26,6 +27,7 @@ export const AppRouter = () => {
           <Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
           <Route exact path="/nosotros" element={<AboutPage />} />
           <Route exact path="/escribinos" element={<ContactPage />} />
+          <Route exact path="/cart" element={<CartPage />} />
         </Routes>
       </Body>
     </Router>

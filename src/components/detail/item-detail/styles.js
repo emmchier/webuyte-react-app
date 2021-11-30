@@ -1,19 +1,28 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 100%;
+export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const Content = styled.div``;
+export const ImgContainer = styled.div`
+  width: 50%;
+`;
 
-export const ImgContainer = styled.div``;
+export const ItemCountContainer = styled.div`
+  width: 50%;
+`;
 
 export const Image = styled.img``;
 
-export const ItemDataContainer = styled.div``;
+export const ItemDataContainer = styled.div`
+  width: 50%;
+
+  button:nth-child(5) {
+    margin-bottom: ${({ theme }) => theme.spacing.space15} !important;
+  }
+`;
 
 export const Name = styled.h3``;
 
