@@ -11,7 +11,6 @@ import {
 } from "./styles";
 
 const ItemDetail = ({ item }) => {
-  console.log(item);
   const { pictureUrl, title, price, description } = item;
 
   return (

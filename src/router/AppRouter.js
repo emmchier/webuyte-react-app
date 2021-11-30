@@ -1,31 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "../components/navbar";
+
+import HomePage from "../pages/home";
+import ItemListContainer from "../components/item-list-container";
+import ItemDetailContainer from "../components/detail/item-detail-container";
 import AboutPage from "../pages/about";
 import ContactPage from "../pages/contact";
 
-import HomePage from "../pages/home";
+import { Body } from "./styles";
 
 export const AppRouter = () => {
-  const [counterCart, setCounterCart] = useState(0);
-
   return (
     <Router>
-      <Navbar counter={counterCart} />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<HomePage />}
-          counterCart={counterCart}
-          setCounterCart={setCounterCart}
-        />
-        <Route exact path="/category/:id" element={<HomePage />} />
-        <Route exact path="/item/:id" element={<HomePage />} />
-        <Route exact path="/nosotros" element={<AboutPage />} />
-        <Route exact path="/escribinos" element={<ContactPage />} />
-      </Routes>
+      <Navbar />
+      <Body>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route
+            exact
+            path="/category/:categoryId"
+            element={<ItemListContainer />}
+          />
+          <Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
+          <Route exact path="/nosotros" element={<AboutPage />} />
+          <Route exact path="/escribinos" element={<ContactPage />} />
+        </Routes>
+      </Body>
     </Router>
   );
 };

@@ -3,16 +3,11 @@ import Item from "../item";
 
 import { List } from "./styles";
 
-const ItemList = ({ items, isDetailVisible, setIsDetailVisible }) => {
+const ItemList = ({ items }) => {
   return (
     <List>
       {items.map((item) => (
-        <Item
-          key={item.id}
-          item={item}
-          isDetailVisible={isDetailVisible}
-          setIsDetailVisible={setIsDetailVisible}
-        />
+        <Item key={item.id} item={item} />
       ))}
     </List>
   );

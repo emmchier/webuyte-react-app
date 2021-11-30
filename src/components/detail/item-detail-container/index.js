@@ -1,20 +1,30 @@
-import React from "react";
-import Button from "../../common/button";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { wineList } from "../../../domain/wineDataList";
 
 import ItemDetail from "../item-detail";
 import { Container } from "./styles";
 
-const ItemDetailContainer = ({
-  isDetailVisible,
-  setIsDetailVisible,
-  itemDetailData,
-}) => {
+const ItemDetailContainer = () => {
+  const [product, setProduct] = useState({});
+  const { itemId } = useParams();
+
+  useEffect(() => {
+    const product = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(
+          itemId
+            ? wineList.find((product) => product.itemId === parseInt(itemId))
+            : reject("Hubo un error. Por favor volvé a internarlo")
+        );
+      }, 2000);
+    });
+    product.then((res) => setProduct(res)).catch((err) => console.log(err));
+  }, [itemId]);
+
   return (
     <Container>
-      <Button onClick={() => setIsDetailVisible(!isDetailVisible)}>
-        Volver
-      </Button>
-      <ItemDetail item={itemDetailData} />
+      <ItemDetail item={product} />
     </Container>
   );
 };

@@ -14,15 +14,11 @@ import {
   ActionButtons,
 } from "./styles";
 
-const Item = ({ item, isDetailVisible, setIsDetailVisible }) => {
-  const { id, pictureUrl, alt, title, description, price } = item;
-
+const Item = ({ item }) => {
+  const { itemId, pictureUrl, alt, title, description, price } = item;
   const [initial, setInitial] = useState(1);
   const [stock] = useState(5);
-
-  const handleDetail = () => {
-    setIsDetailVisible(!isDetailVisible);
-  };
+  console.log(item);
 
   return (
     <Content>
@@ -38,12 +34,9 @@ const Item = ({ item, isDetailVisible, setIsDetailVisible }) => {
         </StockContainer>
         <ItemCount stock={stock} initial={initial} setInitial={setInitial} />
         <ActionButtons>
-          <Link to={`/item/${id}`}>
-            <Button variant="outlined" onClick={handleDetail}>
-              Ver detalle
-            </Button>
+          <Link to={`/item/${itemId}`}>
+            <Button variant="outlined">Ver detalle</Button>
           </Link>
-
           <Button variant="contained">Agregar al carrito</Button>
         </ActionButtons>
       </ProductInfo>

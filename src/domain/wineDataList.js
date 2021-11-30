@@ -1,38 +1,46 @@
 export const wineList = [
   {
-    id: 0,
+    itemId: 0,
     pictureUrl:
       "https://cdn.shopify.com/s/files/1/0083/7130/6547/products/old_atlanta_red_-_front_grande.png?v=1567096230",
     title: "Vino 1",
     description:
       "Bottle your wine faster & easier for commercial sales. Talk to our team today & learn how. Custom machines can handle virtually any size or shape bottle.",
     price: "350",
+    category: "tintos",
+    stock: "1",
   },
   {
-    id: 1,
+    itemId: 1,
     pictureUrl:
       "https://cdn.shopify.com/s/files/1/0083/7130/6547/products/old_atlanta_red_-_front_grande.png?v=1567096230",
     title: "Vino 2",
     description:
       "Bottle your wine faster & easier for commercial sales. Talk to our team today & learn how. Custom machines can handle virtually any size or shape bottle.",
     price: "350",
+    category: "tinto",
+    stock: "1",
   },
   {
-    id: 2,
+    itemId: 2,
     pictureUrl:
       "https://cdn.shopify.com/s/files/1/0083/7130/6547/products/old_atlanta_red_-_front_grande.png?v=1567096230",
     title: "Vino 3",
     description:
       "Bottle your wine faster & easier for commercial sales. Talk to our team today & learn how. Custom machines can handle virtually any size or shape bottle.",
     price: "350",
+    category: "blanco",
+    stock: "1",
   },
   {
-    id: 3,
+    itemId: 3,
     pictureUrl:
       "https://cdn.shopify.com/s/files/1/0083/7130/6547/products/old_atlanta_red_-_front_grande.png?v=1567096230",
     title: "Vino 4",
     description:
       "Bottle your wine faster & easier for commercial sales. Talk to our team today & learn how. Custom machines can handle virtually any size or shape bottle.",
     price: "350",
+    category: "reserva",
+    stock: "1",
   },
 ];
