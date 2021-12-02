@@ -30,4 +30,4 @@ Desplegá el menú de Categorías en la barra superior para filtrar los vinos qu
 
 Vas a poder sumar la cantidad de unidades que gustes del producto seleccionado. Una vez finalizado podrás agregar al carrito la cantidad requerida.
 
-[GIF](https://simplified.app/preview/184391/de244818-d854-4ea1-81e2-7151bea174fd).
+![Alt Text](gif-tpfinal1-rj.gif)
