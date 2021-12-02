@@ -3,7 +3,7 @@ import Section from "../../components/common/section";
 
 const CartPage = () => {
   return (
-    <Section>
+    <Section isBackButton={true}>
       <h3>Cart Page</h3>
     </Section>
   );

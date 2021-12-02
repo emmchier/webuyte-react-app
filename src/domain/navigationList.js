@@ -1,16 +1,16 @@
 export const navList = [
   {
-    id: 0,
-    navItem: "Productos",
+    id: "categorias",
+    navItem: "Categorías",
     to: "#!",
   },
   {
-    id: 1,
+    id: "nosotros",
     navItem: "Sobre nosotros",
     to: "/nosotros",
   },
   {
-    id: 2,
+    id: "contacto",
     navItem: "Contacto",
     to: "/contacto",
   },

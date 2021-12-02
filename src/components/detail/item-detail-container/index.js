@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { wineList } from "../../../domain/wineDataList";
+import Section from "../../common/section";
 
 import ItemDetail from "../item-detail";
 
@@ -20,8 +21,11 @@ const ItemDetailContainer = () => {
     });
     product.then((res) => setProduct(res)).catch((err) => console.log(err));
   }, [itemId]);
-
-  return <ItemDetail item={product} />;
+  return (
+    <Section>
+      <ItemDetail item={product} />
+    </Section>
+  );
 };
 
 export default ItemDetailContainer;

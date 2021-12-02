@@ -7,10 +7,10 @@ const ItemCount = ({ stock, initial, setInitial }) => {
 
   const increment = (num) => initial < stock && setInitial(initial + num);
 
-  const decrement = (num) => initial > 0 && setInitial(initial - num);
+  const decrement = (num) => initial > 1 && setInitial(initial - num);
 
   useEffect(() => {
-    stock > 1 ? setDisabled(false) : setDisabled(true);
+    stock > 0 ? setDisabled(false) : setDisabled(true);
   }, [stock]);
 
   return (

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Header = styled.header`
   width: 100%;
   position: fixed;
+  z-index: 9;
   padding: 0;
   margin: 0;
   box-shadow: ${({ theme }) => theme.shadow.main};

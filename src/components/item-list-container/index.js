@@ -20,7 +20,7 @@ const ItemListContainer = () => {
     products
       .then((res) => setProductList(res))
       .catch((err) => console.log(err));
-  }, [categoryId, productList]);
+  }, [categoryId]);
 
   console.log(productList);
 

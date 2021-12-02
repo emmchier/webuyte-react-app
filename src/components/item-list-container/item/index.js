@@ -12,12 +12,21 @@ import {
   Price,
   StockContainer,
   ActionButtons,
+  Category,
 } from "./styles";
 
 const Item = ({ item }) => {
-  const { itemId, pictureUrl, alt, title, description, price } = item;
+  const {
+    itemId,
+    pictureUrl,
+    alt,
+    title,
+    description,
+    price,
+    category,
+    stock,
+  } = item;
   const [initial, setInitial] = useState(1);
-  const [stock] = useState(5);
   console.log(item);
 
   return (
@@ -26,6 +35,7 @@ const Item = ({ item }) => {
         <Image src={pictureUrl} alt={alt} />
       </ImageContainer>
       <ProductInfo>
+        <Category>{category}</Category>
         <Title>{title}</Title>
         <Description>{description}</Description>
         <Price>{`$${price}`}</Price>

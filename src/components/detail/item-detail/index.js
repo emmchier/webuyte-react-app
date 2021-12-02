@@ -12,19 +12,43 @@ import {
   Name,
   Price,
   ItemCountContainer,
+  CancelBtnContainer,
+  FinishBtnContainer,
+  ItemDataContent,
+  Actions,
+  StockContainer,
+  Category,
 } from "./styles";
 
 const ItemDetail = ({ item }) => {
-  const { pictureUrl, title, price, description, stock } = item;
+  const { pictureUrl, title, price, description, stock, category } = item;
   const [productCount, setProductCount] = useState(0);
   const [count, setCount] = useState(0);
-  const [disabled, setDisabled] = useState(false);
+  const [actions, setActions] = useState(false);
+  const [isCounterVisible, setIsCounterVisible] = useState(true);
+  const [addBtnDisabled, setAddBtnDisabled] = useState(false);
+  const [finishBtnDisabled, setfinishBtnDisabled] = useState(true);
   console.log(productCount);
 
-  const onAdd = () => setProductCount(count);
+  const onAdd = () => {
+    setProductCount(count);
+    setIsCounterVisible(!isCounterVisible);
+    setfinishBtnDisabled(!finishBtnDisabled);
+    setActions(!actions);
+  };
+
+  const onReset = () => {
+    setIsCounterVisible(!isCounterVisible);
+    setfinishBtnDisabled(!finishBtnDisabled);
+    setActions(!actions);
+  };
 
   useEffect(() => {
-    count > 0 ? setDisabled(false) : setDisabled(true);
+    if (count > 0) {
+      setAddBtnDisabled(false);
+    } else {
+      setAddBtnDisabled(true);
+    }
   }, [count]);
 
   return (
@@ -34,20 +58,57 @@ const ItemDetail = ({ item }) => {
           <Image src={pictureUrl} alt={title} />
         </ImgContainer>
         <ItemDataContainer>
-          <Name>{title}</Name>
-          <Price>$ {price}</Price>
-          <Description>{description}</Description>
-          <ItemCountContainer>
-            <ItemCount stock={stock} initial={count} setInitial={setCount} />
-          </ItemCountContainer>
-          <Button variant="outlined" onClick={onAdd} disabled={disabled}>
-            Agregar al carrito
-          </Button>
-          <Link to="/cart">
-            <Button ariaLabel="Finalizar Compra" disabled={disabled}>
-              Finalizar Compra
-            </Button>
-          </Link>
+          <ItemDataContent>
+            <Category>{category}</Category>
+            <Name>{title}</Name>
+            <Price>$ {price}</Price>
+            <Description>{description}</Description>
+            {isCounterVisible && (
+              <>
+                <StockContainer>
+                  {stock > 0 ? `${stock} unidades disponibles` : "No hay stock"}
+                </StockContainer>
+                <ItemCountContainer>
+                  <ItemCount
+                    stock={stock}
+                    initial={count}
+                    setInitial={setCount}
+                  />
+                </ItemCountContainer>
+                <Button
+                  variant="outlined"
+                  onClick={onAdd}
+                  disabled={addBtnDisabled}
+                >
+                  Agregar al carrito
+                </Button>
+              </>
+            )}
+
+            {actions && (
+              <Actions>
+                <Link to="/cart">
+                  <FinishBtnContainer>
+                    <Button
+                      ariaLabel="Finalizar Compra"
+                      disabled={finishBtnDisabled}
+                    >
+                      Finalizar Compra
+                    </Button>
+                  </FinishBtnContainer>
+                </Link>
+                <CancelBtnContainer>
+                  <Button
+                    ariaLabel="Cancelar Compra"
+                    disabled={finishBtnDisabled}
+                    onClick={onReset}
+                  >
+                    Cancelar
+                  </Button>
+                </CancelBtnContainer>
+              </Actions>
+            )}
+          </ItemDataContent>
         </ItemDataContainer>
       </Content>
     </Section>

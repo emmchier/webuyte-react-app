@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { categories } from "../../domain/categoryList";
 import { navList } from "../../domain/navigationList";
 import Container from "../common/container";
+import Dropdown from "../dropdown";
 import CartWidget from "./cart-widget";
 import NavItem from "./navItem";
 import { Brand, Content, Header, Nav, NavList } from "./styles";
@@ -19,7 +21,13 @@ const Navbar = ({ counter }) => {
               {navList.map((item) => (
                 <NavItem key={item.id}>
                   <NavLink to={item.to} aria-label="link">
-                    {item.navItem}
+                    {item.id !== "categorias" ? (
+                      item.navItem
+                    ) : (
+                      <Dropdown categoryList={categories}>
+                        {item.navItem}
+                      </Dropdown>
+                    )}
                   </NavLink>
                 </NavItem>
               ))}

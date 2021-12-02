@@ -69,3 +69,7 @@ export const StockContainer = styled.p`
     `padding: ${theme.spacing.space10} ${theme.spacing.space10}`};
   border-radius: ${({ theme }) => theme.border.radius.main};
 `;
+
+export const Category = styled(StockContainer)`
+  display: inline;
+`;

@@ -21,7 +21,7 @@ export const AppRouter = () => {
           <Route exact path="/" element={<HomePage />} />
           <Route
             exact
-            path="/category/:categoryId"
+            path="/categoria/:categoryId"
             element={<ItemListContainer />}
           />
           <Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
