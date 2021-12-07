@@ -31,7 +31,7 @@ const Navbar = ({ counter }) => {
                   </NavLink>
                 </NavItem>
               ))}
-              <CartWidget count={counter} />
+              <CartWidget />
             </NavList>
           </Nav>
         </Content>

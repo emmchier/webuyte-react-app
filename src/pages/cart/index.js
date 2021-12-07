@@ -1,10 +1,11 @@
 import React from "react";
+import Cart from "../../components/cart/cart-list";
 import Section from "../../components/common/section";
 
 const CartPage = () => {
   return (
     <Section isBackButton={true}>
-      <h3>Cart Page</h3>
+      <Cart />
     </Section>
   );
 };
