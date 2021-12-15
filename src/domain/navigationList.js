@@ -1,7 +1,7 @@
 export const navList = [
   {
     id: "categorias",
-    navItem: "Categorías",
+    navItem: "Productos",
     to: "#!",
   },
   {

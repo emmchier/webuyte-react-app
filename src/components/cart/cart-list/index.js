@@ -7,8 +7,6 @@ import { ContainerList, CartContent } from "./styles";
 const Cart = () => {
   const { cartList, clearCart } = useContext(CartContext);
 
-  console.log(cartList);
-
   return (
     <CartContent>
       <Button onClick={clearCart}>Eliminar Carrito</Button>

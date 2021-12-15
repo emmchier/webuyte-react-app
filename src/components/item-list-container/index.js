@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router";
-import { wineList } from "../../domain/wineDataList";
+import { CartContext } from "../../context/cartContext";
 import ItemList from "./item-list";
 
 const ItemListContainer = () => {
-  const [productList, setProductList] = useState([]);
   const { categoryId } = useParams();
+  const { cartList, setCartList, addProductToCart } = useContext(CartContext);
+  console.log(cartList);
 
   useEffect(() => {
     const products = new Promise((resolve, reject) => {
-      setTimeout(() => {
+      if (cartList !== null) {
         resolve(
           categoryId
-            ? wineList.filter((product) => product.category === categoryId)
-            : wineList
+            ? cartList.filter((product) => product.category === categoryId)
+            : cartList
         );
-      }, 1000);
+      } else {
+        reject("No hay productos");
+      }
     });
-    products
-      .then((res) => setProductList(res))
-      .catch((err) => console.log(err));
-  }, [categoryId]);
+    products.then((res) => setCartList(res)).catch((err) => console.log(err));
+  }, []);
 
-  console.log(productList);
-
-  return productList.length === 0 ? (
+  return cartList.length === 0 ? (
     <h4>Cargando...</h4>
   ) : (
-    <ItemList items={productList} />
+    <ItemList items={cartList} addProductToCart={addProductToCart} />
   );
 };
 

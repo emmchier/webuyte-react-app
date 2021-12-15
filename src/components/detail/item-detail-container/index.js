@@ -1,9 +1,9 @@
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { CartContext } from "../../../context/cartContext";
-import { wineList } from "../../../domain/wineDataList";
+import { getItemById } from "../../../firebase";
 import Section from "../../common/section";
-
 import ItemDetail from "../item-detail";
 
 const ItemDetailContainer = () => {
@@ -12,16 +12,10 @@ const ItemDetailContainer = () => {
   const { addProductToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const product = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(
-          itemId
-            ? wineList.find((product) => product.itemId === parseInt(itemId))
-            : reject("Hubo un error. Por favor volvé a internarlo")
-        );
-      }, 2000);
-    });
-    product.then((res) => setProduct(res)).catch((err) => console.log(err));
+    const ref = getItemById("items", itemId);
+    getDoc(ref).then(
+      (snapShot) => snapShot.exists() && setProduct(snapShot.data())
+    );
   }, [itemId]);
 
   return (

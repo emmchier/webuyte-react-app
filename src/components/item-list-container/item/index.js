@@ -16,18 +16,10 @@ import {
 } from "./styles";
 
 const Item = ({ item }) => {
-  const {
-    itemId,
-    pictureUrl,
-    alt,
-    title,
-    description,
-    price,
-    category,
-    stock,
-  } = item;
-  const [initial, setInitial] = useState(1);
   console.log(item);
+  const { id, pictureUrl, alt, title, description, price, category, stock } =
+    item;
+  const [initial, setInitial] = useState(1);
 
   return (
     <Content>
@@ -44,7 +36,7 @@ const Item = ({ item }) => {
         </StockContainer>
         <ItemCount stock={stock} initial={initial} setInitial={setInitial} />
         <ActionButtons>
-          <Link to={`/item/${itemId}`}>
+          <Link to={`/item/${id}`}>
             <Button variant="outlined">Ver detalle</Button>
           </Link>
           <Button variant="contained">Agregar al carrito</Button>

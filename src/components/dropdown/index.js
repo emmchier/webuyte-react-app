@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/cartContext";
 
 import {
   Container,
@@ -9,8 +10,10 @@ import {
   DropdownMenu,
 } from "./styles";
 
-const Dropdown = ({ children, categoryList }) => {
+const Dropdown = ({ children }) => {
   const [show, setShow] = useState(false);
+  const { categoryList } = useContext(CartContext);
+  console.log(categoryList);
 
   return (
     <Container
@@ -30,16 +33,16 @@ const Dropdown = ({ children, categoryList }) => {
           onMouseLeave={() => setShow(false)}
         >
           <DropdownContent>
-            {categoryList.map((item) => (
+            {categoryList.map((category) => (
               <Link
                 to={
-                  item.categoryId !== "todas"
-                    ? `/categoria/${item.categoryId}`
+                  category.categoryId !== "todas"
+                    ? `/categoria/${category.categoryId}`
                     : "/"
                 }
-                key={item.categoryId}
+                key={category.categoryId}
               >
-                <li>{item.categoryName}</li>
+                <li>{category.categoryName}</li>
               </Link>
             ))}
           </DropdownContent>
