@@ -3,7 +3,7 @@ import { CartContext } from "../../../context/cartContext";
 import Button from "../../common/button";
 import BackToList from "../back-to-list";
 import CartItem from "../cart-item";
-import { ContainerList, CartContent, TotalPrice } from "./styles";
+import { ContainerList, CartContent, TotalPrice, CartActions } from "./styles";
 
 const Cart = () => {
   const {
@@ -14,10 +14,16 @@ const Cart = () => {
     clearCart,
   } = useContext(CartContext);
 
+  console.log(cartList);
+
   return (
     <CartContent>
       {cartUnities > 0 ? (
         <>
+          <CartActions>
+            <TotalPrice>Precio Total: {`$${cartTotalPrice}`}</TotalPrice>
+            <Button onClick={clearCart}>Eliminar Carrito</Button>
+          </CartActions>
           <ContainerList>
             {cartList.map((product) => (
               <CartItem
@@ -27,8 +33,6 @@ const Cart = () => {
               />
             ))}
           </ContainerList>
-          <TotalPrice>Precio Total: {`$${cartTotalPrice}`}</TotalPrice>
-          <Button onClick={clearCart}>Eliminar Carrito</Button>
         </>
       ) : (
         <BackToList />

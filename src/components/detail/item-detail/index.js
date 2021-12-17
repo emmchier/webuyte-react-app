@@ -35,8 +35,8 @@ const ItemDetail = ({ item }) => {
   const { addProductToCart } = useContext(CartContext);
 
   const onAdd = () => {
-    addProductToCart(item, productCount);
-    setProductCount(count);
+    addProductToCart(item, count);
+    setProductCount(productCount);
     setIsCounterVisible(!isCounterVisible);
     setfinishBtnDisabled(!finishBtnDisabled);
     setActions(!actions);

@@ -6,16 +6,18 @@ export const Content = styled.li`
   margin: 0;
   padding: 0;
   padding-top: 50px;
+  display: flex;
+  box-shadow: ${({ theme }) => theme.shadow.main};
 `;
 
 export const ProductImg = styled.img`
-  height: 100%;
-  width: 25%;
+  height: 200px;
   padding: 0;
 `;
 
 export const InfoContent = styled.div`
   width: 75%;
+  display: flex;
 `;
 
 export const Title = styled.h4`

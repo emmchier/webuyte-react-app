@@ -14,3 +14,10 @@ export const TotalPrice = styled.h3`
   margin: 0;
   padding: 0;
 `;
+
+export const CartActions = styled.div`
+  margin-top: 100px;
+  position: absolute;
+  top: 0;
+  right: 30px;
+`;

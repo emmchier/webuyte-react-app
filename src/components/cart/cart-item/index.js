@@ -23,7 +23,7 @@ const CartItem = ({ product, removeProductFromCart }) => {
         </Info>
         <Action>
           <Button onClick={() => removeProductFromCart(product.id)}>
-            Eliminar Carrito
+            Eliminar Producto
           </Button>
         </Action>
       </InfoContent>
