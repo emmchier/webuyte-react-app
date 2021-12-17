@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../common/button";
 import Section from "../../common/section";
 import ItemCount from "../../item-count";
+
+import { CartContext } from "../../../context/cartContext";
+
 import {
   Content,
   Description,
@@ -20,7 +23,7 @@ import {
   Category,
 } from "./styles";
 
-const ItemDetail = ({ item, addProductToCart }) => {
+const ItemDetail = ({ item }) => {
   const { pictureUrl, title, price, description, stock, category } = item;
   const [productCount, setProductCount] = useState(0);
   const [count, setCount] = useState(0);
@@ -29,12 +32,14 @@ const ItemDetail = ({ item, addProductToCart }) => {
   const [addBtnDisabled, setAddBtnDisabled] = useState(false);
   const [finishBtnDisabled, setfinishBtnDisabled] = useState(true);
 
+  const { addProductToCart } = useContext(CartContext);
+
   const onAdd = () => {
+    addProductToCart(item, productCount);
     setProductCount(count);
     setIsCounterVisible(!isCounterVisible);
     setfinishBtnDisabled(!finishBtnDisabled);
     setActions(!actions);
-    addProductToCart(item, productCount);
   };
 
   const onReset = () => {

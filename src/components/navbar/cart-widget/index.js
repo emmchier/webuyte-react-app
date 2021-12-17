@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+
 import { Content, Counter, Icon } from "./styles";
+import { CartContext } from "../../../context/cartContext";
+import { NavLink } from "react-router-dom";
 
 const CartWidget = () => {
-  const [count, setCount] = useState(0);
+  const { cartUnities } = useContext(CartContext);
 
   return (
-    <Content>
-      <Icon className="material-icons">shopping_cart</Icon>
-      <Counter>{count}</Counter>
-    </Content>
+    <>
+      {cartUnities > 0 && (
+        <NavLink to="/cart">
+          <Content>
+            <Icon className="material-icons">shopping_cart</Icon>
+            <Counter>{cartUnities}</Counter>
+          </Content>
+        </NavLink>
+      )}
+    </>
   );
 };
 

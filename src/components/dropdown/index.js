@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
+
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 import {
   Container,
@@ -12,8 +16,15 @@ import {
 
 const Dropdown = ({ children }) => {
   const [show, setShow] = useState(false);
-  const { categoryList } = useContext(CartContext);
-  console.log(categoryList);
+  const { categoryList, setCategoryList } = useContext(CartContext);
+
+  useEffect(() => {
+    const categories = collection(db, "categories");
+    getDocs(categories).then(({ docs }) => {
+      const allCategories = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setCategoryList(allCategories);
+    });
+  }, [setCategoryList]);
 
   return (
     <Container

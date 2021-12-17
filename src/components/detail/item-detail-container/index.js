@@ -1,26 +1,32 @@
-import { doc, getDoc, getFirestore } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
+
 import { useParams } from "react-router";
-import { CartContext } from "../../../context/cartContext";
-import { getItemById } from "../../../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
+
 import Section from "../../common/section";
 import ItemDetail from "../item-detail";
+import { CartContext } from "../../../context/cartContext";
 
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState({});
   const { itemId } = useParams();
-  const { addProductToCart } = useContext(CartContext);
+  const [product, setProduct] = useState({});
+  const { loading, setLoading } = useContext(CartContext);
 
   useEffect(() => {
-    const ref = getItemById("items", itemId);
-    getDoc(ref).then(
-      (snapShot) => snapShot.exists() && setProduct(snapShot.data())
-    );
-  }, [itemId]);
+    setLoading(true);
+    const ref = doc(db, "items", itemId);
+    getDoc(ref)
+      .then((doc) => {
+        const wine = { ...doc.data(), id: doc.id };
+        setProduct(wine);
+      })
+      .finally(() => setLoading(false));
+  }, [itemId, setLoading]);
 
   return (
     <Section>
-      <ItemDetail item={product} addProductToCart={addProductToCart} />
+      {loading ? <h4>Cargando...</h4> : <ItemDetail item={product} />}
     </Section>
   );
 };

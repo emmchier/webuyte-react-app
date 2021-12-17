@@ -1,73 +1,76 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CartContext } from "../context/cartContext";
-import { getCollection } from "../firebase";
-import { getDocs } from "firebase/firestore";
 
 export const CartProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  console.log(cartList);
-  console.log(categoryList);
+  const [cartUnities, setCartUnities] = useState(0);
+  const [cartTotalPrice, setCartTotalPrice] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const ref = getCollection("items");
-    getDocs(ref).then((snapShot) => {
-      const list = snapShot.docs.map((doc) => doc.data());
-      setCartList(list);
-    });
-  }, []);
+  const getProductById = (productId) =>
+    cartList.find((item) => item.id === productId);
 
-  useEffect(() => {
-    const ref = getCollection("categories");
-    getDocs(ref).then((snapShot) => {
-      const list = snapShot.docs.map((doc) => doc.data());
-      setCategoryList(list);
-    });
-  }, []);
+  const cartActions = (setList, setTotal, setUnities) => {
+    setCartList(setList);
+    setCartTotalPrice(setTotal);
+    setCartUnities(setUnities);
+  };
 
   const addProductToCart = (product, quantity) => {
-    const productId = getProductById(product.id);
-    if (productId) {
-      cartList.map((item) => {
-        if (item.id === product.id) {
-          product.quantity = product.quantity + quantity;
-        }
-        return item;
-      });
+    const isProductInCart = getProductById(product.id);
+    if (!isProductInCart) {
+      cartActions(
+        [
+          ...cartList,
+          {
+            ...product,
+            quantity: quantity,
+            subtotal: product.price * quantity,
+          },
+        ],
+        cartTotalPrice + product.price * quantity,
+        cartUnities + quantity
+      );
     } else {
-      addNewProduct(product, quantity);
+      cartActions(
+        cartList.map((item) => {
+          if (item.id === product.id) {
+            item.quantity += quantity;
+            item.subtotal += product.price * quantity;
+          }
+          return item;
+        }),
+        cartTotalPrice + product.price * quantity,
+        cartUnities + quantity
+      );
     }
   };
 
-  const getProductById = (id) => {
-    if (id !== null) {
-      const product = cartList.find((item) => item.id === id);
-      return product;
-    } else {
-      console.log("El producto no existe");
-    }
+  const removeProductFromCart = (productId) => {
+    const productToRemove = getProductById(productId);
+    cartActions(
+      cartList.filter((item) => item.id !== productId),
+      cartUnities - productToRemove.quantity,
+      cartTotalPrice - productToRemove.subtotal
+    );
   };
 
-  const addNewProduct = (item, quantity) =>
-    setCartList([...cartList, { ...item, quantity }]);
-
-  const removeProductFromCart = (id) =>
-    cartList.filter((product) => product.id !== id);
-
-  const clearCart = () => setCartList([]);
+  const clearCart = () => cartActions([], 0, 0);
 
   return (
     <CartContext.Provider
       value={{
         cartList,
-        setCartList,
         categoryList,
         setCategoryList,
+        cartUnities,
+        cartTotalPrice,
         addProductToCart,
-        getProductById,
-        addNewProduct,
         removeProductFromCart,
         clearCart,
+        loading,
+        setLoading,
       }}
     >
       {children}

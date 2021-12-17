@@ -1,33 +1,32 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
+
 import { useParams } from "react-router";
-import { CartContext } from "../../context/cartContext";
 import ItemList from "./item-list";
+import { CartContext } from "../../context/cartContext";
 
 const ItemListContainer = () => {
   const { categoryId } = useParams();
-  const { cartList, setCartList, addProductToCart } = useContext(CartContext);
-  console.log(cartList);
+  const [products, setProducts] = useState([]);
+
+  const { loading, setLoading } = useContext(CartContext);
 
   useEffect(() => {
-    const products = new Promise((resolve, reject) => {
-      if (cartList !== null) {
-        resolve(
-          categoryId
-            ? cartList.filter((product) => product.category === categoryId)
-            : cartList
-        );
-      } else {
-        reject("No hay productos");
-      }
-    });
-    products.then((res) => setCartList(res)).catch((err) => console.log(err));
-  }, []);
+    setLoading(true);
+    const items = categoryId
+      ? query(collection(db, "items"), where("category", "==", categoryId))
+      : collection(db, "items");
+    getDocs(items)
+      .then(({ docs }) => {
+        const wineList = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setProducts(wineList);
+      })
+      .finally(() => setLoading(false));
+  }, [categoryId, setLoading]);
 
-  return cartList.length === 0 ? (
-    <h4>Cargando...</h4>
-  ) : (
-    <ItemList items={cartList} addProductToCart={addProductToCart} />
-  );
+  return <>{loading ? <h4>Cargando...</h4> : <ItemList items={products} />}</>;
 };
 
 export default ItemListContainer;

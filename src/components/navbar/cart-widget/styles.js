@@ -4,6 +4,7 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   ${({ theme }) => `padding: ${theme.spacing.space8} ${theme.spacing.space10}`};
   background-color: ${({ theme }) => theme.color.grey};
   border-radius: ${({ theme }) => theme.border.radius.main};
