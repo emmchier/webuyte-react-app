@@ -19,7 +19,6 @@ const Item = ({ item }) => {
   console.log(item);
   const { id, pictureUrl, alt, title, description, price, category, stock } =
     item;
-  const [initial, setInitial] = useState(1);
 
   return (
     <Content>
@@ -34,12 +33,10 @@ const Item = ({ item }) => {
         <StockContainer>
           {stock > 0 ? `${stock} unidades disponibles` : "No hay stock"}
         </StockContainer>
-        <ItemCount stock={stock} initial={initial} setInitial={setInitial} />
         <ActionButtons>
           <Link to={`/item/${id}`}>
             <Button variant="outlined">Ver detalle</Button>
           </Link>
-          <Button variant="contained">Agregar al carrito</Button>
         </ActionButtons>
       </ProductInfo>
     </Content>

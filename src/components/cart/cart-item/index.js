@@ -18,8 +18,9 @@ const CartItem = ({ product, removeProductFromCart }) => {
       <InfoContent>
         <Info>
           <Title>{product.title}</Title>
-          <Price>{product.price}</Price>
-          <Quantity>{product.stock}</Quantity>
+          <Price>Precio por unidad: {product.price}</Price>
+          <Quantity>Cantidad: {product.quantity}</Quantity>
+          <Quantity>TOTAL: {product.subtotal}</Quantity>
         </Info>
         <Action>
           <Button onClick={() => removeProductFromCart(product.id)}>

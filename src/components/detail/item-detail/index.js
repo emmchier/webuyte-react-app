@@ -98,7 +98,7 @@ const ItemDetail = ({ item }) => {
                       ariaLabel="Finalizar Compra"
                       disabled={finishBtnDisabled}
                     >
-                      Finalizar Compra
+                      Ver mi carrito
                     </Button>
                   </FinishBtnContainer>
                 </Link>
