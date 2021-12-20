@@ -4,7 +4,7 @@ import Section from "../../components/common/section";
 
 const CartPage = () => {
   return (
-    <Section isBackButton={true}>
+    <Section>
       <Cart />
     </Section>
   );

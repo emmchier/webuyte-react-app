@@ -7,7 +7,6 @@ export const ContainerList = styled.ul`
 
 export const CartContent = styled.div`
   margin: 0;
-  padding-top: 90px;
 `;
 
 export const TotalPrice = styled.h3`
@@ -16,8 +15,26 @@ export const TotalPrice = styled.h3`
 `;
 
 export const CartActions = styled.div`
-  margin-top: 100px;
-  position: absolute;
-  top: 0;
-  right: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const MainContainer = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+export const CartListContainer = styled.div`
+  width: 70%;
+`;
+
+export const BuyDataContainer = styled.div`
+  width: 30%;
+  padding: 0 50px;
+
+  button {
+    width: 100%;
+  }
 `;
