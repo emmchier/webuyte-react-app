@@ -50,9 +50,9 @@ export const CartProvider = ({ children }) => {
   const removeProductFromCart = (productId) => {
     const productToRemove = getProductById(productId);
     cartActions(
-      cartList.filter((item) => item.id !== productId),
-      cartUnities - productToRemove.quantity,
-      cartTotalPrice - productToRemove.subtotal
+      cartList.filter((item) => item.id !== productToRemove.id),
+      cartTotalPrice - productToRemove.subtotal,
+      cartUnities - productToRemove.quantity
     );
   };
 
