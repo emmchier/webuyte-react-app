@@ -9,7 +9,6 @@ import { useForm } from "../../../hooks/useForm";
 import Button from "../../common/button";
 import BackToList from "../back-to-list";
 import CartItem from "../cart-item";
-import Form from "../../common/form/Form";
 
 import {
   ContainerList,
@@ -20,6 +19,7 @@ import {
   CartListContainer,
   BuyDataContainer,
 } from "./styles";
+import Form from "../../common/form";
 
 const Cart = () => {
   const navigate = useNavigate();
