@@ -1,10 +1,15 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../../context/cartContext";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { useForm } from "../../../hooks/useForm";
+
 import Button from "../../common/button";
 import BackToList from "../back-to-list";
 import CartItem from "../cart-item";
-import { collection, addDoc } from "firebase/firestore";
+import Form from "../../common/form/Form";
 
 import {
   ContainerList,
@@ -15,9 +20,10 @@ import {
   CartListContainer,
   BuyDataContainer,
 } from "./styles";
-import { db } from "../../../firebase";
 
 const Cart = () => {
+  const navigate = useNavigate();
+
   const {
     cartList,
     cartUnities,
@@ -26,41 +32,44 @@ const Cart = () => {
     clearCart,
   } = useContext(CartContext);
 
-  const [formData, setFormData] = useState({
-    nombre: "",
-    mail: "",
-    confirmarMail: "",
-    telefono: "",
+  const [formValues, handleInputChange] = useForm({
+    userName: "",
+    userEmail: "",
+    userPhone: "",
   });
 
-  const updateFormData = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const { userName, userEmail, userPhone } = formValues;
 
-  const finalizarCompra = (e) => {
+  const uploadNewOrder = (e) => {
     e.preventDefault();
     if (
-      formData.nombre.trim() !== "" &&
-      formData.mail.trim() !== "" &&
-      formData.confirmarMail.trim() !== "" &&
-      formData.telefono.trim() !== "" &&
-      formData.mail === formData.confirmarMail
+      userName.trim() !== "" &&
+      userEmail.trim() !== "" &&
+      userPhone.trim() !== ""
     ) {
-      const date = new Date();
-      const ref = collection(db, "orders");
-      const myData = {
-        buyer: { ...formData },
-        cartList,
-        date: date,
-        total: cartTotalPrice,
-      };
-      addDoc(ref, myData).then((res) => {
-        alert(`Tu numero de compra es ${res.id}`);
-        clearCart();
-      });
+      createOrder();
     } else {
-      alert("Los datos no son correctos, ¡por favor revisarlos!");
+      alert("Ocurrió un error. Te pedimos que vuelvas a repetir la compra.");
     }
+  };
+
+  const createOrder = () => {
+    const date = new Date();
+    const ref = collection(db, "orders");
+    const newOrder = {
+      buyer: { ...formValues },
+      cartList,
+      date: date,
+      total: cartTotalPrice,
+    };
+    addDoc(ref, newOrder).then((response) => {
+      alert(`
+        ¡FELICIDADES POR TU COMPRA!\n 
+        Para realizar el seguimiento de tu compra,\n 
+        tunúmero de pedido es:\n${response.id}`);
+      clearCart();
+      navigate("/");
+    });
   };
 
   return (
@@ -90,41 +99,11 @@ const Cart = () => {
           <BuyDataContainer>
             <TotalPrice>Precio Total: {`$${cartTotalPrice}`}</TotalPrice>
             <h4>Ingresá los datos de tu compra</h4>
-            <form onSubmit={(e) => finalizarCompra(e)}>
-              <label>Nombre y apellido</label>
-              <input
-                type="text"
-                value={formData.nombre}
-                name="nombre"
-                onChange={(e) => updateFormData(e)}
-                required
-              />
-              <label>e-mail</label>
-              <input
-                type="mail"
-                value={formData.mail}
-                name="mail"
-                onChange={(e) => updateFormData(e)}
-                required
-              />
-              <label>Confirmar e-mail</label>
-              <input
-                type="mail"
-                value={formData.confirmarMail}
-                name="confirmarMail"
-                onChange={(e) => updateFormData(e)}
-                required
-              />
-              <label>Telefono</label>
-              <input
-                type="text"
-                value={formData.telefono}
-                name="telefono"
-                onChange={(e) => updateFormData(e)}
-                required
-              />
-              <Button type="submit">Comprar</Button>
-            </form>
+            <Form
+              handleSubmit={(e) => uploadNewOrder(e)}
+              formValues={formValues}
+              handleInputChange={handleInputChange}
+            />
           </BuyDataContainer>
         </MainContainer>
       ) : (
