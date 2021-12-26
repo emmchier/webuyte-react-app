@@ -51,7 +51,7 @@ const variantStyles = (theme, variant) =>
     outlined: css`
       background-color: transparent;
       &:hover {
-        background-color: ${theme.color.pallete.hoverButton};
+        background-color: ${theme.color.background.light};
       }
       &:disabled {
         border: 1px solid ${theme.color.grey};
@@ -132,10 +132,10 @@ const ButtonContainer = styled.button`
   border: none;
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) =>
-    `padding: ${theme.spacing.space10} ${theme.spacing.space15}`};
+  ${({ theme }) => `padding: ${theme.spacing(3)} ${theme.spacing(4)}`};
   border-radius: ${({ theme }) => theme.border.radius.main};
-  font-size: ${({ theme }) => theme.font.size.primary};
+  font-size: ${({ theme }) => theme.font.small.size};
+  line-height: ${({ theme }) => theme.font.smallXX.lineHeight};
   ${({ theme, color }) => colorStyles(theme, color)};
   ${({ theme, variant }) => variantStyles(theme, variant)};
   transition: ${({ theme }) => theme.transition.main};
@@ -149,9 +149,9 @@ const ButtonContainer = styled.button`
   }
 
   @media only screen and (${({ theme }) => theme.breakpoints.mobile}) {
-    ${({ theme }) =>
-      `padding: ${theme.spacing.space20} ${theme.spacing.space10}`};
-    font-size: ${({ theme }) => theme.font.size.secondary};
+    ${({ theme }) => `padding: ${theme.spacing(2)} ${theme.spacing(3)}`};
+    font-size: ${({ theme }) => theme.font.smallX.size};
+    line-height: ${({ theme }) => theme.font.smallXX.lineHeight};
   }
 `;
 

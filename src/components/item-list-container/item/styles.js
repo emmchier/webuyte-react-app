@@ -1,75 +1,90 @@
 import styled from "styled-components";
 
 export const Content = styled.li`
-  max-width: 45%;
-  width: 45%;
-  display: inline-flex;
-  margin-right: 20px;
   background-color: ${({ theme }) => theme.color.white};
-  box-shadow: ${({ theme }) => theme.shadow.main};
+  box-shadow: ${({ theme }) => theme.shadow.normal};
   overflow: hidden;
   border-radius: ${({ theme }) => theme.border.radius.main};
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
+  transition: ${({ theme }) => theme.transition.main};
+  color: ${({ theme }) => theme.color.text.primary};
+
+  &:hover {
+    transition: ${({ theme }) => theme.transition.main};
+    box-shadow: ${({ theme }) => theme.shadow.main};
+  }
+
+  p,
+  h3 {
+    margin: 0;
+  }
 `;
 
 export const ImageContainer = styled.div`
   overflow: hidden;
-  width: 60%;
-  img {
-    height: 100%;
-  }
-`;
-
-export const ProductInfo = styled.div`
-  width: 40%;
   display: flex;
-  justify-content: flex-start;
   align-items: flex-start;
-  flex-direction: column;
-  padding: ${({ theme }) => theme.spacing.space20};
+  justify-content: flex-start;
+  max-height: 250px;
+  position: relative;
 
-  button {
-    width: 100%;
+  svg {
+    position: absolute;
+    right: 0;
   }
 `;
 
 export const Image = styled.img`
   width: 100%;
-  height: 100%;
-  padding: ${({ theme }) => theme.spacing.space8};
   background-color: ${({ theme }) => theme.color.disabled};
 `;
 
-export const Title = styled.h3`
-  color: ${({ theme }) => theme.color.grey};
-  margin: ${({ theme }) => theme.spacing.space5};
+export const ProductInfo = styled.div`
+  padding: ${({ theme }) => theme.spacing(4)};
+
+  button {
+    width: 100% !important;
+  }
 `;
 
-export const Description = styled.p`
-  color: ${({ theme }) => theme.color.grey};
+export const TitlesContainer = styled.div`
+  height: ${({ theme }) => theme.spacing(15)};
+  margin-top: ${({ theme }) => theme.spacing(3)};
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+`;
+
+export const Title = styled.div`
+  h5 {
+    font-size: ${({ theme }) => theme.font.small.size};
+    line-height: ${({ theme }) => theme.font.smallX.lineHeight};
+  }
+  h6 {
+    font-size: 13px;
+    line-height: ${({ theme }) => theme.font.smallXX.lineHeight};
+    color: ${({ theme }) => theme.color.text.secondary};
+  }
 `;
 
 export const Price = styled.p`
   color: ${({ theme }) => theme.color.grey};
-  font-size: ${({ theme }) => theme.font.size.primary};
-  font-weight: 600;
+  font-size: ${({ theme }) => theme.font.medium.size};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
 `;
 
-export const ActionButtons = styled.div`
-  width: 100%;
+export const SecondaryInfo = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(2)};
 
-  button:nth-child(2) {
-    margin-top: 20px;
+  p:nth-child(1) {
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
   }
-`;
 
-export const StockContainer = styled.p`
-  color: ${({ theme }) => theme.color.pallete.primary};
-  background-color: ${({ theme }) => theme.color.pallete.hoverButton};
-  ${({ theme }) =>
-    `padding: ${theme.spacing.space10} ${theme.spacing.space10}`};
-  border-radius: ${({ theme }) => theme.border.radius.main};
-`;
-
-export const Category = styled(StockContainer)`
-  display: inline;
+  p {
+    font-size: ${({ theme }) => theme.font.smallX.size};
+    line-height: ${({ theme }) => theme.font.smallX.lineHeight};
+  }
 `;

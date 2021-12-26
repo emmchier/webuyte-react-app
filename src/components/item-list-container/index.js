@@ -6,6 +6,7 @@ import { db } from "../../firebase";
 import { useParams } from "react-router";
 import ItemList from "./item-list";
 import { CartContext } from "../../context/cartContext";
+import Section from "../common/section";
 
 const ItemListContainer = () => {
   const { categoryId } = useParams();
@@ -26,7 +27,11 @@ const ItemListContainer = () => {
       .finally(() => setLoading(false));
   }, [categoryId, setLoading]);
 
-  return <>{loading ? <h4>Cargando...</h4> : <ItemList items={products} />}</>;
+  return (
+    <Section>
+      {loading ? <h4>Cargando...</h4> : <ItemList items={products} />}
+    </Section>
+  );
 };
 
 export default ItemListContainer;

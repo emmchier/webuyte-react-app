@@ -22,30 +22,11 @@ export const DropdownItem = styled.span`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transform: translateY(10px);
-
-  /* svg {
-    transform: translateY(2px);
-    margin-left: ${({ theme }) => theme.spacing.smallest};
-
-    @media only screen and (${({ theme }) => theme.breakpoints.mobile}) {
-      display: none;
-    }
-  } */
+  transform: translateY(13px);
 
   @media only screen and (${({ theme }) => theme.breakpoints.mobile}) {
     justify-content: space-between;
     transform: translateY(0);
-
-    /* button div {
-      position: absolute;
-      z-index: 9999;
-      margin-right: ${({ theme }) => theme.spacing.medium};
-    }
-
-    &:hover {
-      pointer-events: none !important;
-    } */
   }
 `;
 
@@ -59,10 +40,10 @@ export const DropdownMenu = styled.div`
   padding-left: 0;
   z-index: 999;
   background-color: ${({ theme }) => theme.color.white};
-  border-radius: ${({ theme }) => theme.spacing.space10};
+  border-radius: ${({ theme }) => theme.border.radius.main};
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadow.main};
-  margin-top: 20px;
+  margin-top: ${({ theme }) => theme.spacing(6)};
 
   @media only screen and (${({ theme }) => theme.breakpoints.mobile}) {
     width: 80%;
@@ -102,13 +83,8 @@ export const DropdownContent = styled.ul`
   text-decoration: none;
 
   li {
-    font-size: ${({ theme }) => theme.font.size.secondary};
-    ${({ theme }) =>
-      `padding: ${theme.spacing.space20} ${theme.spacing.space30}`};
-
-    &:hover {
-      background-color: ${({ theme }) => theme.color.pallete.backgroundLight};
-    }
+    font-size: ${({ theme }) => theme.font.small.size};
+    ${({ theme }) => `padding: ${theme.spacing(3)} ${theme.spacing(6)}`};
   }
 
   @media only screen and (${({ theme }) => theme.breakpoints.mobile}) {

@@ -5,13 +5,13 @@ export const navList = [
     to: "#!",
   },
   {
-    id: "nosotros",
-    navItem: "Sobre nosotros",
-    to: "/nosotros",
+    id: "mis-compras",
+    navItem: "Mis compras",
+    to: "/mis-compras",
   },
   {
-    id: "contacto",
-    navItem: "Contacto",
-    to: "/contacto",
+    id: "cart",
+    navItem: "",
+    to: "/mi-carrito",
   },
 ];

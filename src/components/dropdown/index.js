@@ -48,7 +48,7 @@ const Dropdown = ({ children }) => {
               <Link
                 to={
                   category.categoryId !== "todas"
-                    ? `/categoria/${category.categoryId}`
+                    ? `/${category.categoryId}`
                     : "/"
                 }
                 key={category.categoryId}

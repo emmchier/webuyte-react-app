@@ -5,7 +5,6 @@ export const Content = styled.li`
   max-height: 300px;
   margin: 0;
   padding: 0;
-  padding-top: 50px;
   display: flex;
   box-shadow: ${({ theme }) => theme.shadow.main};
 `;

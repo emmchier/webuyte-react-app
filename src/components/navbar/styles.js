@@ -6,7 +6,7 @@ export const Header = styled.header`
   z-index: 9;
   padding: 0;
   margin: 0;
-  box-shadow: ${({ theme }) => theme.shadow.main};
+  box-shadow: ${({ theme }) => theme.shadow.normal};
   background-color: ${({ theme }) => theme.color.white};
 `;
 
@@ -14,17 +14,15 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${({ theme }) => theme.spacing.space8} 0;
+  padding: ${({ theme }) => theme.font.smallXX.size} 0;
 `;
 
-export const Brand = styled.h1`
-  font-weight: 800;
-  font-size: ${({ theme }) => theme.font.size.primary};
-  color: ${({ theme }) => theme.color.primary};
-
-  &::active,
-  &:focus {
-    color: ${({ theme }) => theme.color.primary};
+export const Brand = styled.div`
+  h1 {
+    font-weight: ${({ theme }) => theme.font.weight.light};
+    font-size: ${({ theme }) => theme.font.medium.size};
+    line-height: ${({ theme }) => theme.font.medium.lineHeight};
+    color: ${({ theme }) => theme.color.pallete.primary};
   }
 `;
 

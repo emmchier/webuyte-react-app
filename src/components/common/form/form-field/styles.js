@@ -14,15 +14,15 @@ export const Content = styled.div`
 export const Label = styled.label`
   margin: 0;
   padding: 0;
-  margin-bottom: 5px;
+  margin-bottom: ${({ theme }) => theme.spacing(5)};
 `;
 
 export const Input = styled.input`
   margin: 0;
   padding: 0;
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.spacing(5)};
   border: none;
   background-color: ${({ theme }) => theme.color.pallete.hoverButton};
-  border-radius: 5px;
-  line-height: 40px;
+  border-radius: ${({ theme }) => theme.border.radius.main};
+  line-height: ${({ theme }) => theme.font.largeX.lineHeight};
 `;

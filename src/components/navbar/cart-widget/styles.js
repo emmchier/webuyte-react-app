@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
 export const Content = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  ${({ theme }) => `padding: ${theme.spacing.space8} ${theme.spacing.space10}`};
-  background-color: ${({ theme }) => theme.color.grey};
-  border-radius: ${({ theme }) => theme.border.radius.main};
-`;
+  margin-left: ${({ theme }) => theme.spacing(5)};
 
-export const Icon = styled.i`
-  color: ${({ theme }) => theme.color.white};
+  svg {
+    position: absolute;
+  }
 `;
 
 export const Counter = styled.p`
-  font-size: ${({ theme }) => theme.font.size.primary};
+  font-size: ${({ theme }) => theme.font.medium.size};
+  line-height: ${({ theme }) => theme.font.medium.lineHeight};
   color: ${({ theme }) => theme.color.white};
-  margin: 0 5px 0;
+  position: absolute;
+  z-index: 9;
+  transform: translateY(-6px);
 `;

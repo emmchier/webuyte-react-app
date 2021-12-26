@@ -3,48 +3,84 @@
 export const theme = {
   color: {
     pallete: {
-      primary: "#6223EE",
-      primaryDark: "#3b08aa",
-      primaryLight: "#7e49f1",
+      primary: "#AB044A",
+      primaryDark: "#750023",
+      primaryLight: "#E24B75",
       secondary: "#5b3bda",
       secondaryDark: "#0d0ca7",
       secondaryLight: "#9368ff",
-      hoverButton: "#f3edff",
     },
     text: {
-      primary: "#333333",
-      secondary: "#858282",
+      primary: "#383838",
+      secondary: "#6F6C6C",
     },
-    disabled: "#E8E9EB",
-    backgroundLight: "#9368ff21",
-    grey: "#404040",
+    background: {
+      main: "#EDEDED",
+      light: "#FFEFF6",
+    },
+    grey: {
+      light: "#EDEDED",
+      dark: "#C3BEBE",
+    },
     white: "#FFFFFF",
     black: "#212121",
+    disabled: "#E8E9EB",
     overlay: "#00000069",
   },
   font: {
-    size: {
-      primary: "1.3em",
-      secondary: "1em",
+    family: "'Montserrat', 'sans-serif'",
+    largeXXX: {
+      size: "3rem", // 48px
+      lineHeight: "3.625rem", // 58
+    },
+    largeXX: {
+      size: "2.5rem", // 40px
+      lineHeight: "3.125rem", // 50px
+    },
+    largeX: {
+      size: "2rem", // 32px
+      lineHeight: "2.625rem", // 42px
+    },
+    large: {
+      size: "1.5rem", // 24px
+      lineHeight: "2.125rem", // 34px
+    },
+    medium: {
+      size: "1.25rem", // 20px
+      lineHeight: "1.875rem", // 30px
+    },
+    small: {
+      size: "1rem", // 16px
+      lineHeight: "1.625rem", // 26px
+    },
+    smallX: {
+      size: "0.875rem", // 14px
+      lineHeight: "1.5rem", // 24px
+    },
+    smallXX: {
+      size: "0.625rem", // 10px
+      lineHeight: "1.25rem", // 20px
+    },
+    weight: {
+      light: 300,
+      regular: 400,
+      medium: 500,
+      semiBold: 600,
+      bold: 700,
     },
   },
-  spacing: {
-    space8: "0.5em", // 8px
-    space10: "0.625em", // 10px
-    space15: "0.9375em", // 15px
-    space20: "1.25em", // 20px
-    space30: "1.875em", // 30px
-    space80: "5em", // 80px
-    space100: "6.25em", // 100px
-  },
+  spacing: (unity) => `${0.25 * unity}rem`,
   shadow: {
     main: "0px 0px 1px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(76, 81, 191, 0.12), 0px 10px 20px rgba(76, 81, 191, 0.18);",
+    normal:
+      "0 8px 17px 2px rgba(71, 69, 69, 0.023), 0 3px 14px 2px rgba(71, 69, 69, 0.023), 0 5px 5px -3px rgba(71, 69, 69, 0.023)",
   },
   transition: {
     main: "0.1s ease-in-out",
   },
   border: {
     radius: {
+      small: "5px",
       main: "8px",
     },
   },

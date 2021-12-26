@@ -6,9 +6,8 @@ import Navbar from "../components/navbar";
 import HomePage from "../pages/home";
 import ItemListContainer from "../components/item-list-container";
 import ItemDetailContainer from "../components/detail/item-detail-container";
-import AboutPage from "../pages/about";
-import ContactPage from "../pages/contact";
 import CartPage from "../pages/cart";
+import SalesPage from "../pages/sales";
 
 import { Body } from "./styles";
 
@@ -19,15 +18,10 @@ export const AppRouter = () => {
       <Body>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route
-            exact
-            path="/categoria/:categoryId"
-            element={<ItemListContainer />}
-          />
+          <Route exact path="/:categoryId" element={<ItemListContainer />} />
           <Route exact path="/item/:itemId" element={<ItemDetailContainer />} />
-          <Route exact path="/nosotros" element={<AboutPage />} />
-          <Route exact path="/escribinos" element={<ContactPage />} />
-          <Route exact path="/cart" element={<CartPage />} />
+          <Route exact path="/mis-compras" element={<SalesPage />} />
+          <Route exact path="/mi-carrito" element={<CartPage />} />
         </Routes>
       </Body>
     </Router>

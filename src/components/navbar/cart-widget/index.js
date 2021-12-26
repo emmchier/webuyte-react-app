@@ -1,23 +1,26 @@
 import React, { useContext } from "react";
 
-import { Content, Counter, Icon } from "./styles";
+import { Content, Counter } from "./styles";
 import { CartContext } from "../../../context/cartContext";
 import { NavLink } from "react-router-dom";
+import { GlassEmptyIcon, GlassFullIcon } from "../../../ui/icons";
 
 const CartWidget = () => {
   const { cartUnities } = useContext(CartContext);
 
   return (
-    <>
-      {cartUnities > 0 && (
-        <NavLink to="/cart">
-          <Content>
-            <Icon className="material-icons">shopping_cart</Icon>
+    <NavLink to={cartUnities > 0 ? "/mi-carrito" : ""}>
+      <Content>
+        {cartUnities > 0 ? (
+          <>
+            <GlassFullIcon />
             <Counter>{cartUnities}</Counter>
-          </Content>
-        </NavLink>
-      )}
-    </>
+          </>
+        ) : (
+          <GlassEmptyIcon />
+        )}
+      </Content>
+    </NavLink>
   );
 };
 

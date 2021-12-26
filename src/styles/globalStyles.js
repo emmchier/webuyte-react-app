@@ -8,6 +8,9 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     overflow-x: hidden;
     font-family: "Raleway", "sans-serif";
+    background-color: #EDEDED;
+    color: #383838;
+    font-size: 16px;
   }
 
   * {
@@ -22,5 +25,10 @@ export const GlobalStyles = createGlobalStyle`
   a {
     list-style: none;
     text-decoration: none;
+  }
+
+  .disabled {
+    pointer-events: none !important;
+    cursor: initial !important;
   }
 `;

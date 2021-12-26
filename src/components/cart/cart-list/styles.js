@@ -32,7 +32,7 @@ export const CartListContainer = styled.div`
 
 export const BuyDataContainer = styled.div`
   width: 30%;
-  padding: 0 50px;
+  padding: 0 ${({ theme }) => theme.spacing(5)};
 
   button {
     width: 100%;

@@ -1,12 +1,12 @@
 import React from "react";
 import Section from "../../components/common/section";
 
-const AboutPage = () => {
+const SalesPage = () => {
   return (
-    <Section isBackButton={true}>
-      <h3>Sobre WineByWine</h3>
+    <Section>
+      <h3>Mis compras</h3>
     </Section>
   );
 };
 
-export default AboutPage;
+export default SalesPage;

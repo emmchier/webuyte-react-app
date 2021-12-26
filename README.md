@@ -31,3 +31,9 @@ Desplegá el menú de Categorías en la barra superior para filtrar los vinos qu
 Vas a poder sumar la cantidad de unidades que gustes del producto seleccionado. Una vez finalizado podrás agregar al carrito la cantidad requerida.
 
 ![Alt Text](gif-tpfinal1-rj.gif)
+
+Libraries:
+
+React Grid System: https://www.npmjs.com/package/react-grid-system
+Installation:
+npm install react-grid-system --save
