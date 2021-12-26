@@ -1,17 +1,23 @@
 import styled from "styled-components";
 
-export const BackButton = styled.div`
+export const Content = styled.div`
   button {
-    padding: ${({ theme }) => theme.spacing(5)};
-    position: fixed;
+    color: ${({ theme }) => theme.color.text.secondary};
 
     &:hover {
       text-decoration: none;
+      color: ${({ theme }) => theme.color.pallete.primaryLight};
+
+      span {
+        color: ${({ theme }) => theme.color.pallete.primaryLight};
+      }
     }
 
     span {
-      width: 24px;
-      margin-right: ${({ theme }) => theme.spacing(5)};
+      font-size: ${({ theme }) => theme.font.medium.size};
+      color: ${({ theme }) => theme.color.text.secondary};
+      width: ${({ theme }) => theme.font.medium.size};
+      margin-right: ${({ theme }) => theme.spacing(1)};
     }
   }
 `;

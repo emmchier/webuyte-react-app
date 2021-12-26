@@ -3,19 +3,22 @@ import PropTypes from "prop-types";
 
 import { useNavigate } from "react-router";
 import Button from "../button";
+import { Content } from "./styles";
 
 const BackButton = ({ variant, ariaLabel, nav, isIcon, icon, title }) => {
   const navigate = useNavigate();
 
   return (
-    <Button
-      variant={variant}
-      ariaLabel={ariaLabel}
-      onClick={() => navigate(nav)}
-    >
-      {isIcon && <span className="material-icons">{icon}</span>}
-      {title}
-    </Button>
+    <Content>
+      <Button
+        variant={variant}
+        ariaLabel={ariaLabel}
+        onClick={() => navigate(nav)}
+      >
+        {isIcon && <span className="material-icons">{icon}</span>}
+        {title}
+      </Button>
+    </Content>
   );
 };
 

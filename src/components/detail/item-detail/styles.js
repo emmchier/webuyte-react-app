@@ -6,14 +6,30 @@ export const Content = styled.div`
   justify-content: center;
 `;
 
+export const PriceContainer = styled(Content)``;
+
 export const ImgContainer = styled.div`
   overflow: hidden;
 `;
 
 export const ItemCountContainer = styled.div``;
 
+export const HorizontalContent = styled(Content)`
+  justify-content: flex-start;
+  padding-bottom: ${({ theme }) => theme.spacing(10)};
+
+  a,
+  span {
+    color: ${({ theme }) => theme.color.text.secondary};
+  }
+
+  span:nth-child(2) {
+    margin: 0 ${({ theme }) => theme.spacing(3)};
+  }
+`;
+
 export const Image = styled.img`
-  width: 90%;
+  width: 80%;
 `;
 
 export const ItemDataContainer = styled.div`
@@ -25,13 +41,43 @@ export const ItemDataContainer = styled.div`
 
 export const ItemDataContent = styled.div`
   overflow: hidden;
+  margin-right: ${({ theme }) => theme.spacing(10)};
 `;
 
-export const ItemBuyContent = styled.div``;
+export const ItemBuyContent = styled.div`
+  padding: ${({ theme }) => theme.spacing(5)};
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: ${({ theme }) => theme.border.radius.main};
+`;
 
-export const Name = styled.h3``;
+export const TitlesContainer = styled.div`
+  height: ${({ theme }) => theme.spacing(15)};
+  margin-top: ${({ theme }) => theme.spacing(3)};
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+`;
 
-export const Price = styled.h5``;
+export const Title = styled.div`
+  h5 {
+    font-size: ${({ theme }) => theme.font.small.size};
+    line-height: ${({ theme }) => theme.font.smallX.lineHeight};
+  }
+  h6 {
+    font-size: 13px;
+    line-height: ${({ theme }) => theme.font.smallXX.lineHeight};
+    color: ${({ theme }) => theme.color.text.secondary};
+  }
+`;
+
+export const Price = styled.p`
+  color: ${({ theme }) => theme.color.grey};
+  font-size: ${({ theme }) => theme.font.medium.size};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+`;
 
 export const Description = styled.p``;
 

@@ -4,6 +4,7 @@ import { CartContext } from "../context/cartContext";
 export const CartProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [cartUnities, setCartUnities] = useState(0);
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -71,6 +72,8 @@ export const CartProvider = ({ children }) => {
         clearCart,
         loading,
         setLoading,
+        payments,
+        setPayments,
       }}
     >
       {children}

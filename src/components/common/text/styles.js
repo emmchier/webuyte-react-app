@@ -33,7 +33,7 @@ const capStyles = (cap) =>
   }[cap]);
 
 export const Paragraph = styled.p`
-  font-size: ${({ theme }) => theme.font.medium.size};
+  font-size: ${({ theme }) => theme.font.small.size};
   line-height: ${({ theme }) => theme.font.small.lineHeight};
   ${({ theme, weight }) => weightStyles(theme, weight)};
   ${({ cap }) => capStyles(cap)};
