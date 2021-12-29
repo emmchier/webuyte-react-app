@@ -23,7 +23,7 @@ const BackButton = ({ variant, ariaLabel, nav, isIcon, icon, title }) => {
 };
 
 BackButton.propTypes = {
-  nav: PropTypes.string.isRequired,
+  nav: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   variant: PropTypes.string,
   ariaLabel: PropTypes.string,

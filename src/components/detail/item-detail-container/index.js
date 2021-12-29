@@ -12,6 +12,7 @@ const ItemDetailContainer = () => {
   const { itemId } = useParams();
   const [product, setProduct] = useState({});
   const { loading, setLoading } = useContext(CartContext);
+  console.log(product);
 
   useEffect(() => {
     setLoading(true);
@@ -22,7 +23,8 @@ const ItemDetailContainer = () => {
         setProduct(wine);
       })
       .finally(() => setLoading(false));
-  }, [itemId, setLoading]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemId]);
 
   return (
     <Section>

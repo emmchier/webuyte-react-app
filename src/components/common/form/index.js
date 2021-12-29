@@ -4,7 +4,7 @@ import FormField from "./form-field";
 import { FormContainer } from "./styles";
 
 const Form = ({ handleSubmit, formValues, handleInputChange }) => {
-  const { userName, userEmail, userPhone } = formValues;
+  const { userName, userEmail, userPhone, userConfirmPhone } = formValues;
 
   return (
     <FormContainer onSubmit={handleSubmit}>
@@ -29,6 +29,14 @@ const Form = ({ handleSubmit, formValues, handleInputChange }) => {
         labelName="Teléfono"
         inputType="number"
         inputValue={userPhone}
+        onChange={handleInputChange}
+        isRequired={true}
+      />
+      <FormField
+        labelFor="userConfirmPhone"
+        labelName="Confirmar Teléfono"
+        inputType="number"
+        inputValue={userConfirmPhone}
         onChange={handleInputChange}
         isRequired={true}
       />

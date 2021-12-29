@@ -36,7 +36,7 @@ const Item = ({ item }) => {
       <Content>
         <ImageContainer>
           <Image src={pictureUrl ? pictureUrl : EmptyImg} alt={alt && alt} />
-          {isNew && <Tag title="Nuevo" />}
+          <span>{isNew && <Tag title="Nuevo" />}</span>
           {isReserva && <ReservaIcon />}
         </ImageContainer>
         <ProductInfo>

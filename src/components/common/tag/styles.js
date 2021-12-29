@@ -33,7 +33,6 @@ export const Content = styled.div`
   background-color: ${({ theme }) => theme.color.pallete.primaryLight};
   margin: ${({ theme }) => theme.spacing(2)};
   border-radius: ${({ theme }) => theme.border.radius.small};
-  position: absolute;
 `;
 
 export const Title = styled.p`

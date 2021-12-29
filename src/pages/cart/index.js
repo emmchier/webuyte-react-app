@@ -4,7 +4,7 @@ import Section from "../../components/common/section";
 
 const CartPage = () => {
   return (
-    <Section>
+    <Section className="animate__animated animate__fadeIn">
       <Cart />
     </Section>
   );

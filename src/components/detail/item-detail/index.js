@@ -23,6 +23,8 @@ import {
   ItemBuyContent,
   HorizontalContent,
   PriceContainer,
+  HeaderDetail,
+  HeaderInfo,
 } from "./styles";
 
 import { Col, Container, Row } from "react-grid-system";
@@ -95,15 +97,18 @@ const ItemDetail = ({ item }) => {
       const related = ref.filter((item) => item.id !== id);
       setRelatedProducts(related);
     });
-  }, [cellar, id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <>
-      <HorizontalContent>
-        <BackButton nav={-1} title="Volver" isIcon={true} />
-        <span> | </span>
-        <Link to="/">Ir al listado</Link>
-      </HorizontalContent>
+    <div className="animate__animated animate__fadeIn">
+      <HeaderDetail>
+        <HorizontalContent>
+          <BackButton nav={-1} title="Volver" isIcon={true} />
+          <span> | </span>
+          <Link to="/">Ir al listado</Link>
+        </HorizontalContent>
+      </HeaderDetail>
       <Content>
         <Container component={Adjust}>
           <Row>
@@ -117,13 +122,15 @@ const ItemDetail = ({ item }) => {
             </Col>
             <Col xs={12} sm={12} md={6} lg={5}>
               <ItemDataContent>
-                <HorizontalContent>
-                  <Text>{variety && variety}</Text>
-                  <span> | </span>
-                  <Text cap="cap">{category && category.slice(0, -1)}</Text>
-                  {isNew && <Tag title="Nuevo" />}
-                </HorizontalContent>
-                <ListDivider />
+                <HeaderInfo>
+                  <HorizontalContent>
+                    <Text>{variety && variety}</Text>
+                    <span> | </span>
+                    <Text cap="cap">{category && category.slice(0, -1)}</Text>
+                    {isNew && <Tag title="Nuevo" />}
+                  </HorizontalContent>
+                  <ListDivider />
+                </HeaderInfo>
                 {isReserva && <ReservaIcon />}
                 <TitlesContainer>
                   <Title>
@@ -206,10 +213,12 @@ const ItemDetail = ({ item }) => {
                 ) : (
                   <>
                     <Text>No hay stock disponible. Repondremos en breve.</Text>
-                    <Text>
-                      Consultá por más productos de {cellar} al pie de éste
-                      detalle.
-                    </Text>
+                    {relatedProducts.length > 1 && (
+                      <Text>
+                        Consultá por más productos de {cellar} al pie de éste
+                        detalle.
+                      </Text>
+                    )}
                   </>
                 )}
               </ItemBuyContent>
@@ -217,19 +226,23 @@ const ItemDetail = ({ item }) => {
           </Row>
         </Container>
       </Content>
-      <Heading variant="h4">Ver más productos de {cellar}</Heading>
-      <Container component={Adjust}>
-        <List>
-          <Row gutterWidth={15}>
-            {relatedProducts.map((item) => (
-              <Col xs={6} sm={4} md={3} lg={2}>
-                <Item key={id} item={item} />
-              </Col>
-            ))}
-          </Row>
-        </List>
-      </Container>
-    </>
+      {relatedProducts.length > 1 && (
+        <>
+          <Heading variant="h4">Ver más productos de {cellar}</Heading>
+          <Container component={Adjust}>
+            <List>
+              <Row gutterWidth={15}>
+                {relatedProducts.map((item) => (
+                  <Col xs={6} sm={4} md={3} lg={2}>
+                    <Item key={id} item={item} />
+                  </Col>
+                ))}
+              </Row>
+            </List>
+          </Container>
+        </>
+      )}
+    </div>
   );
 };
 

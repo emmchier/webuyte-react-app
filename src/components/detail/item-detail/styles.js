@@ -14,9 +14,30 @@ export const ImgContainer = styled.div`
 
 export const ItemCountContainer = styled.div``;
 
+export const HeaderDetail = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(10)};
+`;
+
+export const HeaderInfo = styled.div`
+  padding-bottom: ${({ theme }) => theme.spacing(4)};
+
+  p:nth-child(1),
+  p:nth-child(3) {
+    padding: 0 !important;
+  }
+
+  div:nth-child(4) {
+    margin-left: ${({ theme }) => theme.spacing(4)};
+    ${({ theme }) => `padding: ${theme.spacing(0)} ${theme.spacing(4)}`};
+  }
+
+  hr {
+    margin-top: ${({ theme }) => theme.spacing(2)};
+  }
+`;
+
 export const HorizontalContent = styled(Content)`
   justify-content: flex-start;
-  padding-bottom: ${({ theme }) => theme.spacing(10)};
 
   a,
   span {
@@ -42,6 +63,10 @@ export const ItemDataContainer = styled.div`
 export const ItemDataContent = styled.div`
   overflow: hidden;
   margin-right: ${({ theme }) => theme.spacing(10)};
+
+  div:nth-child(1) {
+    margin-bottom: 0;
+  }
 `;
 
 export const ItemBuyContent = styled.div`

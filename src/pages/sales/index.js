@@ -1,12 +1,6 @@
 import React from "react";
-import Section from "../../components/common/section";
+import OrderListContainer from "../../components/order/order-list-container";
 
-const SalesPage = () => {
-  return (
-    <Section>
-      <h3>Mis compras</h3>
-    </Section>
-  );
-};
+const SalesPage = () => <OrderListContainer />;
 
 export default SalesPage;

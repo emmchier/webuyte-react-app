@@ -7,7 +7,6 @@ import { db } from "../../../firebase";
 import { useForm } from "../../../hooks/useForm";
 
 import Button from "../../common/button";
-import BackToList from "../back-to-list";
 import CartItem from "../cart-item";
 
 import {
@@ -20,6 +19,7 @@ import {
   BuyDataContainer,
 } from "./styles";
 import Form from "../../common/form";
+import EmptyList from "../../empty-list";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -30,26 +30,30 @@ const Cart = () => {
     cartTotalPrice,
     removeProductFromCart,
     clearCart,
+    setOrder,
   } = useContext(CartContext);
 
   const [formValues, handleInputChange] = useForm({
     userName: "",
     userEmail: "",
     userPhone: "",
+    userConfirmPhone: "",
   });
 
-  const { userName, userEmail, userPhone } = formValues;
+  const { userName, userEmail, userPhone, userConfirmPhone } = formValues;
 
   const uploadNewOrder = (e) => {
     e.preventDefault();
     if (
       userName.trim() !== "" &&
       userEmail.trim() !== "" &&
-      userPhone.trim() !== ""
+      userPhone.trim() !== "" &&
+      userConfirmPhone.trim() !== "" &&
+      userPhone.trim() === userConfirmPhone.trim()
     ) {
       createOrder();
     } else {
-      alert("Ocurrió un error. Te pedimos que vuelvas a repetir la compra.");
+      alert("Ocurrió un error. Alguno de los campos no es correcto.");
     }
   };
 
@@ -63,17 +67,19 @@ const Cart = () => {
       total: cartTotalPrice,
     };
     addDoc(ref, newOrder).then((response) => {
-      alert(`
-        ¡FELICIDADES POR TU COMPRA!\n 
-        Para realizar el seguimiento de tu compra,\n 
-        tunúmero de pedido es:\n${response.id}`);
+      setOrder(response);
       clearCart();
-      navigate("/");
+      navigate(`/compra/${response.id}`);
     });
   };
 
+  const emptyDescription = [
+    "Seguí buscando en nuestra",
+    <span>tienda los mejores vinos</span>,
+  ];
+
   return (
-    <CartContent>
+    <CartContent className="animate__animated animate__fadeIn">
       {cartUnities > 0 ? (
         <MainContainer>
           <CartListContainer>
@@ -107,7 +113,13 @@ const Cart = () => {
           </BuyDataContainer>
         </MainContainer>
       ) : (
-        <BackToList />
+        <EmptyList
+          title={"Tu carrito está vacío"}
+          description={emptyDescription}
+          isButton={true}
+          buttonTitle="Volver al listado"
+          to="/"
+        />
       )}
     </CartContent>
   );

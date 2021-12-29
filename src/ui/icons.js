@@ -88,10 +88,10 @@ export const VisaIcon = () => (
     <path
       d="M29.9598 21H3.04007C1.91334 21 1 20.0906 1 18.9687V3.03137C1 1.9095 1.91344 1 3.04017 1H29.9598C31.0866 1 32 1.9095 32 3.03137V18.9686C32 20.0905 31.0866 21 29.9598 21Z"
       stroke="#6E6C6C"
-      stroke-width="0.8"
-      stroke-miterlimit="10"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="0.8"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -111,10 +111,10 @@ export const MastercardIcon = () => (
     <path
       d="M29.9598 21H3.04007C1.91334 21 1 20.0906 1 18.9687V3.03137C1 1.9095 1.91344 1 3.04017 1H29.9598C31.0866 1 32 1.9095 32 3.03137V18.9686C32 20.0905 31.0866 21 29.9598 21Z"
       stroke="#6E6C6C"
-      stroke-width="0.8"
-      stroke-miterlimit="10"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="0.8"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -169,10 +169,10 @@ export const AmericanExpressIcon = () => (
     <path
       d="M29.9598 21H3.04007C1.91334 21 1 20.0906 1 18.9687V3.03137C1 1.9095 1.91344 1 3.04017 1H29.9598C31.0866 1 32 1.9095 32 3.03137V18.9686C32 20.0905 31.0866 21 29.9598 21Z"
       stroke="#6E6C6C"
-      stroke-width="0.8"
-      stroke-miterlimit="10"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="0.8"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -234,5 +234,52 @@ export const GlassFullIcon = ({ height = "37", width = "40" }) => (
       d="M29.277 4C28.045 4.00001 18.0067 4 18.0067 4V29C18.0067 29 23.5503 29 27.0922 27.1752C29.9011 25.728 31.712 23.8905 32.7899 20.7883C33.8678 17.6861 30.509 3.99999 29.277 4Z"
       fill="#E24B75"
     />
+  </svg>
+);
+
+export const EmptyListIcon = () => (
+  <svg
+    width="261"
+    height="90"
+    viewBox="0 0 161 56"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M24.0127 45.4871L2.79953 45.4871L2.79953 2.99999L85.4997 3C108.573 3 109.149 16.2696 109.149 16.2696L153 16.2696L153 32.2275L109.149 32.2275C109.149 32.2275 108.573 45.4972 85.4997 45.4972L79.8705 45.4972C64.8019 45.4871 41.143 45.4871 24.0127 45.4871Z"
+      stroke="#C3BEBE"
+      strokeWidth="5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M79.8704 3L79.8704 45.4871"
+      stroke="#C3BEBE"
+      strokeWidth="5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M24.0127 3L24.0127 45.4871"
+      stroke="#C3BEBE"
+      strokeWidth="5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M121.074 16.2595L121.074 32.2275"
+      stroke="#C3BEBE"
+      strokeWidth="5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <ellipse cx="147" cy="52.1389" rx="4" ry="1" fill="#AB044A" />
+    <ellipse cx="151" cy="49.1389" rx="4" ry="1" fill="#AB044A" />
+    <ellipse cx="157" cy="54.1389" rx="4" ry="1" fill="#AB044A" />
+    <circle cx="152.5" cy="34.6389" r="1.5" fill="#AB044A" />
   </svg>
 );

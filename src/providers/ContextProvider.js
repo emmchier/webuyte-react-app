@@ -3,11 +3,11 @@ import { CartContext } from "../context/cartContext";
 
 export const CartProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
-  const [categoryList, setCategoryList] = useState([]);
-  const [payments, setPayments] = useState([]);
   const [cartUnities, setCartUnities] = useState(0);
+  const [order, setOrder] = useState({});
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [showIsEmpty, setShowIsEmpty] = useState(false);
 
   const getProductById = (productId) =>
     cartList.find((item) => item.id === productId);
@@ -63,8 +63,6 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartList,
-        categoryList,
-        setCategoryList,
         cartUnities,
         cartTotalPrice,
         addProductToCart,
@@ -72,8 +70,10 @@ export const CartProvider = ({ children }) => {
         clearCart,
         loading,
         setLoading,
-        payments,
-        setPayments,
+        order,
+        setOrder,
+        showIsEmpty,
+        setShowIsEmpty,
       }}
     >
       {children}

@@ -32,6 +32,10 @@ export const ImageContainer = styled.div`
     position: absolute;
     right: 0;
   }
+
+  span {
+    position: absolute;
+  }
 `;
 
 export const Image = styled.img`
