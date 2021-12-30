@@ -17,7 +17,6 @@ import {
   Actions,
   StockContainer,
   TitlesContainer,
-  Title,
   Adjust,
   List,
   ItemBuyContent,
@@ -25,6 +24,11 @@ import {
   PriceContainer,
   HeaderDetail,
   HeaderInfo,
+  ReservaContainer,
+  PriceDetailContainer,
+  Description,
+  AddBtnContainer,
+  MoreProductsContainer,
 } from "./styles";
 
 import { Col, Container, Row } from "react-grid-system";
@@ -35,7 +39,7 @@ import BackButton from "../../common/back-button";
 import Heading from "../../common/heading";
 import Text from "../../common/text";
 import EmptyImg from "./../../../assets/empty-img.svg";
-import { ReservaIcon } from "../../../ui/icons";
+import { ReservaDetailIcon } from "../../../ui/icons";
 import ListDivider from "../../common/list-divider";
 import PaymentMethodList from "../../payment-method-list";
 
@@ -62,6 +66,7 @@ const ItemDetail = ({ item }) => {
   const [addBtnDisabled, setAddBtnDisabled] = useState(false);
   const [finishBtnDisabled, setfinishBtnDisabled] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  console.log(relatedProducts);
 
   const { addProductToCart, removeProductFromCart } = useContext(CartContext);
 
@@ -92,6 +97,7 @@ const ItemDetail = ({ item }) => {
     const items = id
       ? query(collection(db, "items"), where("cellar", "==", cellar))
       : collection(db, "items");
+
     getDocs(items).then(({ docs }) => {
       const ref = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       const related = ref.filter((item) => item.id !== id);
@@ -112,51 +118,63 @@ const ItemDetail = ({ item }) => {
       <Content>
         <Container component={Adjust}>
           <Row>
-            <Col xs={12} sm={12} md={3} lg={4}>
-              <ImgContainer>
-                <Image
-                  src={pictureUrl ? pictureUrl : EmptyImg}
-                  alt={title && title}
-                />
-              </ImgContainer>
-            </Col>
-            <Col xs={12} sm={12} md={6} lg={5}>
-              <ItemDataContent>
-                <HeaderInfo>
-                  <HorizontalContent>
-                    <Text>{variety && variety}</Text>
-                    <span> | </span>
-                    <Text cap="cap">{category && category.slice(0, -1)}</Text>
-                    {isNew && <Tag title="Nuevo" />}
-                  </HorizontalContent>
-                  <ListDivider />
-                </HeaderInfo>
-                {isReserva && <ReservaIcon />}
-                <TitlesContainer>
-                  <Title>
-                    <Heading variant="h5">{title && title}</Heading>
-                  </Title>
-                  <Title>
-                    <Heading variant="h6">{cellar && cellar}</Heading>
-                  </Title>
-                </TitlesContainer>
-                <Text weight="semiBold">{`$ ${price && price}`}</Text>
-                <Text>x unidad</Text>
-                <Text weight="semiBold">{`$ ${price && price * 6 - 200}`}</Text>
-                <Text>caja x 6 botellas</Text>
-                <ListDivider />
-                <Text>{description}</Text>
-                <Text>Cosecha: {year}</Text>
-                <Text>Alcohol: {alcohol}%</Text>
-              </ItemDataContent>
+            <Col xs={12} sm={12} md={3} lg={9}>
+              <Row>
+                <Col xs={12} sm={12} md={3} lg={5}>
+                  <ImgContainer>
+                    <Image
+                      src={pictureUrl ? pictureUrl : EmptyImg}
+                      alt={title && title}
+                    />
+                  </ImgContainer>
+                </Col>
+                <Col xs={12} sm={12} md={6} lg={7}>
+                  <ItemDataContent>
+                    <HeaderInfo>
+                      <HorizontalContent>
+                        <Text>{variety && variety}</Text>
+                        <span> | </span>
+                        <Text cap="cap">
+                          {category && category.slice(0, -1)}
+                        </Text>
+                        {isNew && <Tag title="Nuevo" />}
+                      </HorizontalContent>
+                      <ListDivider />
+                    </HeaderInfo>
+                    {isReserva && (
+                      <ReservaContainer>
+                        <ReservaDetailIcon />
+                        <Text>Reserva</Text>
+                      </ReservaContainer>
+                    )}
+                    <TitlesContainer>
+                      <Heading variant="h5">{title && title}</Heading>
+                      <Heading variant="h6">Bodegas {cellar && cellar}</Heading>
+                    </TitlesContainer>
+                    <PriceDetailContainer>
+                      <Text weight="semiBold">{`$ ${price && price}`}</Text>
+                      <Text>x unidad</Text>
+                      <Text weight="semiBold">{`$ ${
+                        price && price * 6 - 200
+                      }`}</Text>
+                      <Text>caja x 6 botellas</Text>
+                      <ListDivider />
+                    </PriceDetailContainer>
+                    <Description>
+                      <Text>{description}</Text>
+                    </Description>
+                    <Text>Cosecha: {year}</Text>
+                    <Text>Alcohol: {alcohol}%</Text>
+                  </ItemDataContent>
+                </Col>
+              </Row>
             </Col>
             <Col xs={12} sm={12} md={3} lg={3}>
               <ItemBuyContent>
                 {stock > 0 ? (
                   <>
-                    <Heading variant="h5">
-                      6 cuotas sin interés cada unidad
-                    </Heading>
+                    <Text>Cada unidad</Text>
+                    <Heading variant="h5">6 cuotas sin interés</Heading>
                     <PriceContainer>
                       <Text>
                         x <span>$ {price && (price / 6).toFixed(2)} </span>
@@ -168,22 +186,25 @@ const ItemDetail = ({ item }) => {
                     {isCounterVisible && (
                       <>
                         <StockContainer>
-                          {`Stock disponible (${stock && stock})`}
+                          Stock disponible (<span>{stock && stock}</span>)
                         </StockContainer>
                         <ItemCountContainer>
+                          <Text weight="medium">Cantidad</Text>
                           <ItemCount
                             stock={stock}
                             initial={count}
                             setInitial={setCount}
                           />
                         </ItemCountContainer>
-                        <Button
-                          variant="outlined"
-                          onClick={onAdd}
-                          disabled={addBtnDisabled}
-                        >
-                          Agregar al carrito
-                        </Button>
+                        <AddBtnContainer>
+                          <Button
+                            variant="outlined"
+                            onClick={onAdd}
+                            disabled={addBtnDisabled}
+                          >
+                            Agregar al carrito
+                          </Button>
+                        </AddBtnContainer>
                       </>
                     )}
                     {actions && (
@@ -226,22 +247,24 @@ const ItemDetail = ({ item }) => {
           </Row>
         </Container>
       </Content>
-      {relatedProducts.length > 1 && (
-        <>
-          <Heading variant="h4">Ver más productos de {cellar}</Heading>
-          <Container component={Adjust}>
-            <List>
-              <Row gutterWidth={15}>
-                {relatedProducts.map((item) => (
-                  <Col xs={6} sm={4} md={3} lg={2}>
-                    <Item key={id} item={item} />
-                  </Col>
-                ))}
-              </Row>
-            </List>
-          </Container>
-        </>
-      )}
+      <MoreProductsContainer>
+        {relatedProducts.length > 0 && (
+          <>
+            <Heading variant="h4">Ver más productos de {cellar}</Heading>
+            <Container component={Adjust}>
+              <List>
+                <Row gutterWidth={15}>
+                  {relatedProducts.map((item) => (
+                    <Col xs={6} sm={4} md={3} lg={2}>
+                      <Item key={id} item={item} />
+                    </Col>
+                  ))}
+                </Row>
+              </List>
+            </Container>
+          </>
+        )}
+      </MoreProductsContainer>
     </div>
   );
 };

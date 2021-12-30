@@ -3,19 +3,36 @@ import styled from "styled-components";
 export const Content = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
-export const PriceContainer = styled(Content)``;
+export const PriceContainer = styled(Content)`
+  align-items: flex-start;
+`;
 
 export const ImgContainer = styled.div`
   overflow: hidden;
 `;
 
-export const ItemCountContainer = styled.div``;
+export const ItemCountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
+
+  p {
+    margin-right: ${({ theme }) => theme.spacing(4)};
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  }
+`;
 
 export const HeaderDetail = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing(10)};
+  background-color: ${({ theme }) => theme.color.grey.light};
+  width: 100%;
+  position: fixed;
+  z-index: 9;
+  padding: ${({ theme }) => theme.spacing(7)} 0;
 `;
 
 export const HeaderInfo = styled.div`
@@ -28,7 +45,7 @@ export const HeaderInfo = styled.div`
 
   div:nth-child(4) {
     margin-left: ${({ theme }) => theme.spacing(4)};
-    ${({ theme }) => `padding: ${theme.spacing(0)} ${theme.spacing(4)}`};
+    ${({ theme }) => `padding: 0 ${theme.spacing(4)}`};
   }
 
   hr {
@@ -60,8 +77,22 @@ export const ItemDataContainer = styled.div`
   }
 `;
 
-export const ItemDataContent = styled.div`
+export const MoreProductsContainer = styled.div`
   overflow: hidden;
+
+  h4 {
+    margin-top: ${({ theme }) => theme.spacing(20)};
+  }
+
+  div {
+    ul {
+      transform: translateY(-60px);
+    }
+  }
+`;
+
+export const ItemDataContent = styled.div`
+  overflow: scroll;
   margin-right: ${({ theme }) => theme.spacing(10)};
 
   div:nth-child(1) {
@@ -73,6 +104,43 @@ export const ItemBuyContent = styled.div`
   padding: ${({ theme }) => theme.spacing(5)};
   background-color: ${({ theme }) => theme.color.white};
   border-radius: ${({ theme }) => theme.border.radius.main};
+  position: fixed;
+  margin-right: ${({ theme }) => theme.spacing(20)};
+
+  h6 {
+    font-size: ${({ theme }) => theme.font.small.size};
+    margin-top: ${({ theme }) => theme.spacing(5)};
+    margin-bottom: ${({ theme }) => theme.spacing(2)};
+  }
+
+  svg {
+    margin-right: ${({ theme }) => theme.spacing(2)};
+  }
+
+  p:nth-child(1) {
+    span {
+      font-size: ${({ theme }) => theme.font.medium.size};
+      font-weight: ${({ theme }) => theme.font.weight.bold};
+    }
+  }
+
+  p:nth-child(2) {
+    font-size: ${({ theme }) => theme.font.smallX.size};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+  }
+`;
+
+export const ReservaContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  p {
+    font-size: ${({ theme }) => theme.font.medium.size};
+    line-height: ${({ theme }) => theme.font.medium.lineHeight};
+    color: ${({ theme }) => theme.color.pallete.primary};
+    margin-left: ${({ theme }) => theme.spacing(1)};
+  }
 `;
 
 export const TitlesContainer = styled.div`
@@ -84,17 +152,35 @@ export const TitlesContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
+
+  h5 {
+    font-size: ${({ theme }) => theme.font.large.size};
+    line-height: ${({ theme }) => theme.font.large.lineHeight};
+    color: ${({ theme }) => theme.color.text.primary};
+  }
+
+  h6 {
+    font-size: ${({ theme }) => theme.font.medium.size};
+    line-height: ${({ theme }) => theme.font.medium.lineHeight};
+    font-weight: ${({ theme }) => theme.font.weight.regular};
+    color: ${({ theme }) => theme.color.text.secondary};
+  }
 `;
 
-export const Title = styled.div`
-  h5 {
-    font-size: ${({ theme }) => theme.font.small.size};
-    line-height: ${({ theme }) => theme.font.smallX.lineHeight};
+export const PriceDetailContainer = styled.div`
+  p {
+    &:nth-child(1) {
+      font-size: ${({ theme }) => theme.font.large.size};
+      line-height: ${({ theme }) => theme.font.large.lineHeight};
+    }
+
+    &:nth-child(1),
+    &:nth-child(3) {
+      margin-top: ${({ theme }) => theme.spacing(5)};
+    }
   }
-  h6 {
-    font-size: 13px;
-    line-height: ${({ theme }) => theme.font.smallXX.lineHeight};
-    color: ${({ theme }) => theme.color.text.secondary};
+  hr {
+    margin: ${({ theme }) => theme.spacing(5)} 0;
   }
 `;
 
@@ -123,18 +209,26 @@ export const CancelBtnContainer = styled.div`
   }
 `;
 
-export const FinishBtnContainer = styled.div`
+export const FinishBtnContainer = styled.div``;
+
+export const Actions = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(5)};
+  button {
+    width: 100% !important;
+    display: flex !important;
+  }
+`;
+
+export const AddBtnContainer = styled.div`
   button {
     width: 100%;
   }
 `;
 
-export const Actions = styled.div``;
-
 export const StockContainer = styled.p`
-  color: ${({ theme }) => theme.color.text.primary};
-  ${({ theme }) => `padding: ${theme.spacing(5)} ${theme.spacing(5)}`};
-  border-radius: ${({ theme }) => theme.border.radius.main};
+  span {
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  }
 `;
 
 export const Category = styled(StockContainer)`
@@ -147,4 +241,5 @@ export const List = styled.ul`
 
 export const Adjust = styled.div`
   padding: 0 !important;
+  margin-top: ${({ theme }) => theme.spacing(25)};
 `;

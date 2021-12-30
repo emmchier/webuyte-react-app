@@ -15,19 +15,11 @@ const ItemCount = ({ stock, initial, setInitial }) => {
 
   return (
     <Content>
-      <Button
-        variant="outlined"
-        onClick={() => increment(1)}
-        disabled={disabled}
-      >
+      <Button onClick={() => increment(1)} disabled={disabled}>
         +
       </Button>
       <Counter>{initial}</Counter>
-      <Button
-        variant="outlined"
-        onClick={() => decrement(1)}
-        disabled={disabled}
-      >
+      <Button onClick={() => decrement(1)} disabled={disabled}>
         -
       </Button>
     </Content>

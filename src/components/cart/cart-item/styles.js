@@ -1,12 +1,39 @@
 import styled from "styled-components";
 
 export const Content = styled.li`
-  width: 100%;
-  max-height: 300px;
   margin: 0;
-  padding: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: ${({ theme }) => theme.shadow.main};
+  border-radius: ${({ theme }) => theme.border.radius.main};
+  background-color: ${({ theme }) => theme.color.white};
+  margin-bottom: ${({ theme }) => theme.spacing(3)};
+  overflow: hidden;
+
+  div:nth-child(1) {
+    margin-bottom: ${({ theme }) => theme.spacing(5)};
+  }
+`;
+
+export const PriceContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  p {
+    border-radius: ${({ theme }) => theme.border.radius.main};
+    background-color: ${({ theme }) => theme.color.grey.light};
+    color: ${({ theme }) => theme.color.text.primary};
+    font-weight: ${({ theme }) => theme.font.weight.semiBold};
+    font-size: ${({ theme }) => theme.font.large.size};
+    padding: ${({ theme }) => theme.spacing(3)};
+  }
+`;
+
+export const GeneralInfo = styled.div`
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing(10)};
 `;
 
 export const ProductImg = styled.img`
@@ -15,8 +42,14 @@ export const ProductImg = styled.img`
 `;
 
 export const InfoContent = styled.div`
-  width: 75%;
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    color: ${({ theme }) => theme.color.text.secondary};
+  }
 `;
 
 export const Title = styled.h4`
@@ -34,10 +67,8 @@ export const Quantity = styled.p`
   padding: 0;
 `;
 
-export const Info = styled.div`
-  width: 70%;
-`;
+export const Info = styled.div``;
 
 export const Action = styled.div`
-  width: 30%;
+  margin: 0 !important;
 `;

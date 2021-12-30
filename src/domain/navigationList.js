@@ -5,11 +5,6 @@ export const navList = [
     to: "#!",
   },
   {
-    id: "mis-compras",
-    navItem: "Mis compras",
-    to: "/mis-compras",
-  },
-  {
     id: "cart",
     navItem: "",
     to: "/mi-carrito",

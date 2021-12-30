@@ -7,7 +7,6 @@ export const CartProvider = ({ children }) => {
   const [order, setOrder] = useState({});
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [showIsEmpty, setShowIsEmpty] = useState(false);
 
   const getProductById = (productId) =>
     cartList.find((item) => item.id === productId);
@@ -72,8 +71,6 @@ export const CartProvider = ({ children }) => {
         setLoading,
         order,
         setOrder,
-        showIsEmpty,
-        setShowIsEmpty,
       }}
     >
       {children}

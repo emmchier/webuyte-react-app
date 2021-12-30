@@ -14,12 +14,18 @@ import {
   CartContent,
   TotalPrice,
   CartActions,
-  MainContainer,
-  CartListContainer,
   BuyDataContainer,
+  Adjust,
+  HeaderCartContainer,
+  CartGeneralInfo,
 } from "./styles";
+
 import Form from "../../common/form";
 import EmptyList from "../../empty-list";
+import { Col, Container, Row } from "react-grid-system";
+import Heading from "../../common/heading";
+import ListDivider from "../../common/list-divider";
+import { StockContainer } from "../../detail/item-detail/styles";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -81,37 +87,57 @@ const Cart = () => {
   return (
     <CartContent className="animate__animated animate__fadeIn">
       {cartUnities > 0 ? (
-        <MainContainer>
-          <CartListContainer>
-            <CartActions>
-              <Link to="/">
-                <Button variant="text">Volver a la tienda</Button>
-              </Link>
-              <span> / </span>
-              <Button variant="text" onClick={clearCart}>
-                Eliminar Carrito
-              </Button>
-            </CartActions>
-            <ContainerList>
-              {cartList.map((product) => (
-                <CartItem
-                  key={product.id}
-                  product={product}
-                  removeProductFromCart={removeProductFromCart}
-                />
-              ))}
-            </ContainerList>
-          </CartListContainer>
-          <BuyDataContainer>
-            <TotalPrice>Precio Total: {`$${cartTotalPrice}`}</TotalPrice>
-            <h4>Ingresá los datos de tu compra</h4>
-            <Form
-              handleSubmit={(e) => uploadNewOrder(e)}
-              formValues={formValues}
-              handleInputChange={handleInputChange}
-            />
-          </BuyDataContainer>
-        </MainContainer>
+        <>
+          <Container component={Adjust}>
+            <HeaderCartContainer>
+              <CartGeneralInfo>
+                <Heading variant="h3">Mi Carrito</Heading>
+                <span> | </span>
+                <TotalPrice>
+                  Precio TOTAL <span>{`$${cartTotalPrice}`}</span>
+                </TotalPrice>
+                <StockContainer>
+                  Cantidad de productos (
+                  <span>{cartUnities && cartUnities}</span>)
+                </StockContainer>
+              </CartGeneralInfo>
+
+              <CartActions>
+                <Link to="/">
+                  <Button variant="text">Volver al listado</Button>
+                </Link>
+                <span> | </span>
+                <Button variant="text" onClick={clearCart}>
+                  Eliminar Carrito
+                </Button>
+              </CartActions>
+            </HeaderCartContainer>
+            <ListDivider />
+            <Row>
+              <Col xs={6} sm={4} md={3} lg={8}>
+                <ContainerList>
+                  {cartList.map((product) => (
+                    <CartItem
+                      key={product.id}
+                      product={product}
+                      removeProductFromCart={removeProductFromCart}
+                    />
+                  ))}
+                </ContainerList>
+              </Col>
+              <Col xs={6} sm={4} md={3} lg={4}>
+                <BuyDataContainer>
+                  <h4>Ingresá los datos de tu compra</h4>
+                  <Form
+                    handleSubmit={(e) => uploadNewOrder(e)}
+                    formValues={formValues}
+                    handleInputChange={handleInputChange}
+                  />
+                </BuyDataContainer>
+              </Col>
+            </Row>
+          </Container>
+        </>
       ) : (
         <EmptyList
           title={"Tu carrito está vacío"}

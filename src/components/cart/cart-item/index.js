@@ -1,33 +1,47 @@
 import React from "react";
+
 import Button from "../../common/button";
+import Heading from "../../common/heading";
+import Text from "../../common/text";
+import { HorizontalContent } from "../../detail/item-detail/styles";
 import {
   Content,
-  Price,
-  Title,
-  Quantity,
   ProductImg,
   InfoContent,
   Info,
   Action,
+  PriceContainer,
+  GeneralInfo,
 } from "./styles";
 
 const CartItem = ({ product, removeProductFromCart }) => {
+  const { id, pictureUrl, title, variety, category, price, quantity } = product;
   return (
     <Content>
-      <ProductImg src={product.pictureUrl} alt={`Imágen de ${product.title}`} />
-      <InfoContent>
-        <Info>
-          <Title>{product.title}</Title>
-          <Price>Precio por unidad: {product.price}</Price>
-          <Quantity>Cantidad: {product.quantity}</Quantity>
-          <Quantity>TOTAL: {product.subtotal}</Quantity>
-        </Info>
-        <Action>
-          <Button onClick={() => removeProductFromCart(product.id)}>
-            Eliminar Producto
-          </Button>
-        </Action>
-      </InfoContent>
+      <ProductImg src={pictureUrl} alt={`Imágen de ${title}`} />
+      <GeneralInfo>
+        <InfoContent>
+          <Info>
+            <Heading variant="h4">{title}</Heading>
+            <HorizontalContent>
+              <Text>{variety && variety}</Text>
+              <span> | </span>
+              <Text cap="cap">{category && category.slice(0, -1)}</Text>
+            </HorizontalContent>
+          </Info>
+          <PriceContainer>
+            <Text>$ {price && (price / 6).toFixed(2)}</Text>
+          </PriceContainer>
+        </InfoContent>
+        <InfoContent>
+          <Action>
+            <Button variant="text" onClick={() => removeProductFromCart(id)}>
+              Eliminar Producto
+            </Button>
+          </Action>
+          <Text>Unidades ({quantity})</Text>
+        </InfoContent>
+      </GeneralInfo>
     </Content>
   );
 };
