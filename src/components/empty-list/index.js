@@ -5,6 +5,7 @@ import { EmptyListIcon } from "../../ui/icons";
 import Button from "../common/button";
 import Heading from "../common/heading";
 import Text from "../common/text";
+
 import { Content, EmptyContainer } from "./styles";
 
 const EmptyList = ({

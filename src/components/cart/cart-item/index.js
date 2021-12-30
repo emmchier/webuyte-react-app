@@ -16,6 +16,7 @@ import {
 
 const CartItem = ({ product, removeProductFromCart }) => {
   const { id, pictureUrl, title, variety, category, price, quantity } = product;
+
   return (
     <Content>
       <ProductImg src={pictureUrl} alt={`Imágen de ${title}`} />

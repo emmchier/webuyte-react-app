@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import Button from "../../common/button";
 import ItemCount from "../../item-count";
@@ -66,7 +67,6 @@ const ItemDetail = ({ item }) => {
   const [addBtnDisabled, setAddBtnDisabled] = useState(false);
   const [finishBtnDisabled, setfinishBtnDisabled] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  console.log(relatedProducts);
 
   const { addProductToCart, removeProductFromCart } = useContext(CartContext);
 
@@ -97,7 +97,6 @@ const ItemDetail = ({ item }) => {
     const items = id
       ? query(collection(db, "items"), where("cellar", "==", cellar))
       : collection(db, "items");
-
     getDocs(items).then(({ docs }) => {
       const ref = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       const related = ref.filter((item) => item.id !== id);
@@ -255,8 +254,8 @@ const ItemDetail = ({ item }) => {
               <List>
                 <Row gutterWidth={15}>
                   {relatedProducts.map((item) => (
-                    <Col xs={6} sm={4} md={3} lg={2}>
-                      <Item key={id} item={item} />
+                    <Col key={id} xs={6} sm={4} md={3} lg={2}>
+                      <Item item={item} />
                     </Col>
                   ))}
                 </Row>

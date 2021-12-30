@@ -11,8 +11,6 @@ import Section from "../common/section";
 const ItemListContainer = () => {
   const { categoryId } = useParams();
   const [products, setProducts] = useState([]);
-  console.log(products);
-
   const { loading, setLoading } = useContext(CartContext);
 
   useEffect(() => {

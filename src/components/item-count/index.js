@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import Button from "../common/button";
 import { Content, Counter } from "./styles";
 
@@ -6,7 +7,6 @@ const ItemCount = ({ stock, initial, setInitial }) => {
   const [disabled, setDisabled] = useState(false);
 
   const increment = (num) => initial < stock && setInitial(initial + num);
-
   const decrement = (num) => initial > 1 && setInitial(initial - num);
 
   useEffect(() => {

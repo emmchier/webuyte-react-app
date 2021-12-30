@@ -1,11 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import { useNavigate } from "react-router";
 import Button from "../button";
 import { Content } from "./styles";
 
-const BackButton = ({ variant, ariaLabel, nav, isIcon, icon, title }) => {
+const BackButton = ({
+  variant = "text",
+  ariaLabel = "back button",
+  nav,
+  isIcon = false,
+  icon = "arrow_backward",
+  title,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -20,22 +26,6 @@ const BackButton = ({ variant, ariaLabel, nav, isIcon, icon, title }) => {
       </Button>
     </Content>
   );
-};
-
-BackButton.propTypes = {
-  nav: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  variant: PropTypes.string,
-  ariaLabel: PropTypes.string,
-  isIcon: PropTypes.bool,
-  icon: PropTypes.string,
-};
-
-BackButton.defaultProps = {
-  variant: "text",
-  ariaLabel: "back button",
-  isIcon: false,
-  icon: "arrow_backward",
 };
 
 export default BackButton;

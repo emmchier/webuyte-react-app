@@ -12,7 +12,6 @@ const ItemDetailContainer = () => {
   const { itemId } = useParams();
   const [product, setProduct] = useState({});
   const { loading, setLoading } = useContext(CartContext);
-  console.log(product);
 
   useEffect(() => {
     setLoading(true);

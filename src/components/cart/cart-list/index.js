@@ -101,7 +101,6 @@ const Cart = () => {
                   <span>{cartUnities && cartUnities}</span>)
                 </StockContainer>
               </CartGeneralInfo>
-
               <CartActions>
                 <Link to="/">
                   <Button variant="text">Volver al listado</Button>
