@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import { Container, Row, Col } from "react-grid-system";
-import EmptyList from "../../empty-list";
-import Item from "../item";
+import { Container, Row, Col } from 'react-grid-system';
+import EmptyList from '../../empty-list';
+import Item from '../item';
 
-import { List, Adjust } from "./styles";
+import { List, Adjust } from './styles';
 
 const ItemList = ({ items }) => {
   const emptyTitle = [
-    "Ocurrió un error al cargar los productos.",
+    'Ocurrió un error al cargar los productos.',
     <span>Porfavor volvé a recargar la web</span>,
   ];
 

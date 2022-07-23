@@ -1,16 +1,20 @@
-import React from "react";
+import React from 'react';
 
-import ButtonContainer from "./styles";
+import ButtonContainer from './styles';
 
 const Button = ({
   children,
   ariaLabel,
-  variant = "contained",
-  color = "primary",
+  variant = 'contained',
+  color = 'primary',
+  onMouseEnter,
+  onMouseLeave,
   ...rest
 }) => {
   return (
     <ButtonContainer
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       aria-label={ariaLabel}
       variant={variant}
       color={color}

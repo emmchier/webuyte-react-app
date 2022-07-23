@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Content = styled.li`
   background-color: ${({ theme }) => theme.color.white};
@@ -43,11 +43,34 @@ export const Image = styled.img`
   background-color: ${({ theme }) => theme.color.disabled};
 `;
 
+export const HeaderInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  p {
+    flex-grow: 1;
+
+    span {
+      margin-right: 2px;
+    }
+  }
+
+  button {
+    padding: 0;
+    margin-top: 0 !important;
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
+
 export const ProductInfo = styled.div`
   padding: ${({ theme }) => theme.spacing(4)};
 
   button {
-    width: 100% !important;
+    width: 100%;
+    margin-top: ${({ theme }) => theme.spacing(4)};
   }
 `;
 

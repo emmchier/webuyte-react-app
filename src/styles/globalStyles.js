@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-    font-family: "Raleway", "sans-serif";
+    font-family: "Raleway", sans-serif;
     background-color: #EDEDED;
     color: #383838;
     font-size: 16px;

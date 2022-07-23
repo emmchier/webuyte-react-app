@@ -1,21 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import { NavLink } from "react-router-dom";
-import { navList } from "../../domain/navigationList";
-import Container from "../common/container";
-import Heading from "../common/heading";
-import Dropdown from "../dropdown";
-import CartWidget from "./cart-widget";
-import NavItem from "./navItem";
+import { NavLink } from 'react-router-dom';
+import { navList } from '../../domain/navigationList';
+import { LikeStrokeIcon } from '../../ui/icons';
+import Container from '../common/container';
+import Heading from '../common/heading';
+import Dropdown from '../dropdown';
+import CartWidget from './cart-widget';
+import NavItem from './navItem';
 
-import { Brand, Content, Header, Nav, NavList } from "./styles";
+import { Brand, Content, Header, Nav, NavList } from './styles';
 
 const Navbar = () => {
   const getNavLink = (id, item) => {
     switch (id) {
-      case "categorias":
+      case 'favoritos':
+        return <LikeStrokeIcon />;
+      case 'categorias':
         return <Dropdown>{item}</Dropdown>;
-      case "cart":
+      case 'cart':
         return <CartWidget />;
       default:
         return item;
@@ -34,9 +37,14 @@ const Navbar = () => {
             <NavList>
               {navList.map((item) => (
                 <NavItem key={item.id}>
-                  <NavLink to={item.to} aria-label="link">
-                    {getNavLink(item.id, item.navItem)}
-                  </NavLink>
+                  {item.isLink ? (
+                    <NavLink to={item.to} aria-label="link">
+                      {getNavLink(item.id, item.navItem)}
+                    </NavLink>
+                  ) : (
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                    <a>{getNavLink(item.id, item.navItem)}</a>
+                  )}
                 </NavItem>
               ))}
             </NavList>

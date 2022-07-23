@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import { Link, useNavigate } from "react-router-dom";
-import { CartContext } from "../../../context/cartContext";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
-import { useForm } from "../../../hooks/useForm";
+import { Link, useNavigate } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../../firebase';
+import { useForm } from '../../../hooks/useForm';
 
-import Button from "../../common/button";
-import CartItem from "../cart-item";
+import Button from '../../common/button';
+import CartItem from '../cart-item';
 
 import {
   ContainerList,
@@ -18,32 +17,27 @@ import {
   Adjust,
   HeaderCartContainer,
   CartGeneralInfo,
-} from "./styles";
+} from './styles';
 
-import Form from "../../common/form";
-import EmptyList from "../../empty-list";
-import { Col, Container, Row } from "react-grid-system";
-import Heading from "../../common/heading";
-import ListDivider from "../../common/list-divider";
-import { StockContainer } from "../../detail/item-detail/styles";
+import Form from '../../common/form';
+import EmptyList from '../../empty-list';
+import { Col, Container, Row } from 'react-grid-system';
+import Heading from '../../common/heading';
+import ListDivider from '../../common/list-divider';
+import { StockContainer } from '../../detail/item-detail/styles';
+import { CartContext } from '../../../context';
 
 const Cart = () => {
   const navigate = useNavigate();
 
-  const {
-    cartList,
-    cartUnities,
-    cartTotalPrice,
-    removeProductFromCart,
-    clearCart,
-    setOrder,
-  } = useContext(CartContext);
+  const { cartList, cartUnities, cartTotalPrice, removeProductFromCart, clearCart, setOrder } =
+    useContext(CartContext);
 
   const [formValues, handleInputChange] = useForm({
-    userName: "",
-    userEmail: "",
-    userPhone: "",
-    userConfirmPhone: "",
+    userName: '',
+    userEmail: '',
+    userPhone: '',
+    userConfirmPhone: '',
   });
 
   const { userName, userEmail, userPhone, userConfirmPhone } = formValues;
@@ -51,21 +45,21 @@ const Cart = () => {
   const uploadNewOrder = (e) => {
     e.preventDefault();
     if (
-      userName.trim() !== "" &&
-      userEmail.trim() !== "" &&
-      userPhone.trim() !== "" &&
-      userConfirmPhone.trim() !== "" &&
+      userName.trim() !== '' &&
+      userEmail.trim() !== '' &&
+      userPhone.trim() !== '' &&
+      userConfirmPhone.trim() !== '' &&
       userPhone.trim() === userConfirmPhone.trim()
     ) {
       createOrder();
     } else {
-      alert("Ocurrió un error. Alguno de los campos no es correcto.");
+      alert('Ocurrió un error. Alguno de los campos no es correcto.');
     }
   };
 
   const createOrder = () => {
     const date = new Date();
-    const ref = collection(db, "orders");
+    const ref = collection(db, 'orders');
     const newOrder = {
       buyer: { ...formValues },
       cartList,
@@ -79,10 +73,7 @@ const Cart = () => {
     });
   };
 
-  const emptyDescription = [
-    "Seguí buscando en nuestra",
-    <span>tienda los mejores vinos</span>,
-  ];
+  const emptyDescription = ['Seguí buscando en nuestra', <span>tienda los mejores vinos</span>];
 
   return (
     <CartContent className="animate__animated animate__fadeIn">
@@ -97,8 +88,7 @@ const Cart = () => {
                   Precio TOTAL <span>{`$${cartTotalPrice}`}</span>
                 </TotalPrice>
                 <StockContainer>
-                  Cantidad de productos (
-                  <span>{cartUnities && cartUnities}</span>)
+                  Cantidad de productos (<span>{cartUnities && cartUnities}</span>)
                 </StockContainer>
               </CartGeneralInfo>
               <CartActions>
@@ -139,7 +129,7 @@ const Cart = () => {
         </>
       ) : (
         <EmptyList
-          title={"Tu carrito está vacío"}
+          title={'Tu carrito está vacío'}
           description={emptyDescription}
           isButton={true}
           buttonTitle="Volver al listado"

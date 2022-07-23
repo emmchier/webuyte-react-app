@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
 
-import { Link } from "react-router-dom";
-import Button from "../../common/button";
-import ItemCount from "../../item-count";
-import Tag from "../../common/tag";
-
-import { CartContext } from "../../../context/cartContext";
+import { Link } from 'react-router-dom';
+import Button from '../../common/button';
+import ItemCount from '../../item-count';
+import Tag from '../../common/tag';
 
 import {
   Content,
@@ -30,19 +28,20 @@ import {
   Description,
   AddBtnContainer,
   MoreProductsContainer,
-} from "./styles";
+} from './styles';
 
-import { Col, Container, Row } from "react-grid-system";
-import Item from "../../item-list-container/item";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../../firebase";
-import BackButton from "../../common/back-button";
-import Heading from "../../common/heading";
-import Text from "../../common/text";
-import EmptyImg from "./../../../assets/empty-img.svg";
-import { ReservaDetailIcon } from "../../../ui/icons";
-import ListDivider from "../../common/list-divider";
-import PaymentMethodList from "../../payment-method-list";
+import { Col, Container, Row } from 'react-grid-system';
+import Item from '../../item-list-container/item';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../../firebase';
+import BackButton from '../../common/back-button';
+import Heading from '../../common/heading';
+import Text from '../../common/text';
+import EmptyImg from './../../../assets/empty-img.svg';
+import { ReservaDetailIcon } from '../../../ui/icons';
+import ListDivider from '../../common/list-divider';
+import PaymentMethodList from '../../payment-method-list';
+import { CartContext } from '../../../context';
 
 const ItemDetail = ({ item }) => {
   const {
@@ -95,8 +94,8 @@ const ItemDetail = ({ item }) => {
 
   useEffect(() => {
     const items = id
-      ? query(collection(db, "items"), where("cellar", "==", cellar))
-      : collection(db, "items");
+      ? query(collection(db, 'items'), where('cellar', '==', cellar))
+      : collection(db, 'items');
     getDocs(items).then(({ docs }) => {
       const ref = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       const related = ref.filter((item) => item.id !== id);
@@ -121,10 +120,7 @@ const ItemDetail = ({ item }) => {
               <Row>
                 <Col xs={12} sm={12} md={3} lg={5}>
                   <ImgContainer>
-                    <Image
-                      src={pictureUrl ? pictureUrl : EmptyImg}
-                      alt={title && title}
-                    />
+                    <Image src={pictureUrl ? pictureUrl : EmptyImg} alt={title && title} />
                   </ImgContainer>
                 </Col>
                 <Col xs={12} sm={12} md={6} lg={7}>
@@ -133,9 +129,7 @@ const ItemDetail = ({ item }) => {
                       <HorizontalContent>
                         <Text>{variety && variety}</Text>
                         <span> | </span>
-                        <Text cap="cap">
-                          {category && category.slice(0, -1)}
-                        </Text>
+                        <Text cap="cap">{category && category.slice(0, -1)}</Text>
                         {isNew && <Tag title="Nuevo" />}
                       </HorizontalContent>
                       <ListDivider />
@@ -153,9 +147,7 @@ const ItemDetail = ({ item }) => {
                     <PriceDetailContainer>
                       <Text weight="semiBold">{`$ ${price && price}`}</Text>
                       <Text>x unidad</Text>
-                      <Text weight="semiBold">{`$ ${
-                        price && price * 6 - 200
-                      }`}</Text>
+                      <Text weight="semiBold">{`$ ${price && price * 6 - 200}`}</Text>
                       <Text>caja x 6 botellas</Text>
                       <ListDivider />
                     </PriceDetailContainer>
@@ -189,18 +181,10 @@ const ItemDetail = ({ item }) => {
                         </StockContainer>
                         <ItemCountContainer>
                           <Text weight="medium">Cantidad</Text>
-                          <ItemCount
-                            stock={stock}
-                            initial={count}
-                            setInitial={setCount}
-                          />
+                          <ItemCount stock={stock} initial={count} setInitial={setCount} />
                         </ItemCountContainer>
                         <AddBtnContainer>
-                          <Button
-                            variant="outlined"
-                            onClick={onAdd}
-                            disabled={addBtnDisabled}
-                          >
+                          <Button variant="outlined" onClick={onAdd} disabled={addBtnDisabled}>
                             Agregar al carrito
                           </Button>
                         </AddBtnContainer>
@@ -210,10 +194,7 @@ const ItemDetail = ({ item }) => {
                       <Actions>
                         <Link to="/mi-carrito">
                           <FinishBtnContainer>
-                            <Button
-                              ariaLabel="Finalizar Compra"
-                              disabled={finishBtnDisabled}
-                            >
+                            <Button ariaLabel="Finalizar Compra" disabled={finishBtnDisabled}>
                               Ver mi carrito
                             </Button>
                           </FinishBtnContainer>
@@ -234,10 +215,7 @@ const ItemDetail = ({ item }) => {
                   <>
                     <Text>No hay stock disponible. Repondremos en breve.</Text>
                     {relatedProducts.length > 1 && (
-                      <Text>
-                        Consultá por más productos de {cellar} al pie de éste
-                        detalle.
-                      </Text>
+                      <Text>Consultá por más productos de {cellar} al pie de éste detalle.</Text>
                     )}
                   </>
                 )}

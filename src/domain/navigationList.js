@@ -1,12 +1,26 @@
 export const navList = [
   {
-    id: "categorias",
-    navItem: "Productos",
-    to: "#!",
+    id: 'compras',
+    navItem: 'Mis compras',
+    isLink: true,
+    to: '/mis-compras',
   },
   {
-    id: "cart",
-    navItem: "",
-    to: "/mi-carrito",
+    id: 'categorias',
+    navItem: 'Categorías',
+    isLink: false,
+    to: '',
+  },
+  {
+    id: 'favoritos',
+    navItem: '',
+    isLink: true,
+    to: '/favoritos',
+  },
+  {
+    id: 'cart',
+    navItem: '',
+    isLink: true,
+    to: '/mi-carrito',
   },
 ];

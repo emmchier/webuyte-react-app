@@ -1,15 +1,31 @@
-import { useState } from "react";
-import { CartContext } from "../context/cartContext";
+import { collection, getDocs } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { CartContext } from '../context';
+import { db } from '../firebase';
 
 export const CartProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [cartUnities, setCartUnities] = useState(0);
   const [order, setOrder] = useState({});
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [loadingOrders, setLoadingOrders] = useState(false);
 
-  const getProductById = (productId) =>
-    cartList.find((item) => item.id === productId);
+  useEffect(() => {
+    setLoading(true);
+    const items = collection(db, 'orders');
+    getDocs(items)
+      .then(({ docs }) => {
+        const orderList = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setOrders(orderList);
+      })
+      .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log('cambio');
+  }, []);
+
+  const getProductById = (productId) => cartList.find((item) => item.id === productId);
 
   const cartActions = (setList, setTotal, setUnities) => {
     setCartList(setList);
@@ -71,6 +87,10 @@ export const CartProvider = ({ children }) => {
         setLoading,
         order,
         setOrder,
+        orders,
+        setOrders,
+        loadingOrders,
+        setLoadingOrders,
       }}
     >
       {children}

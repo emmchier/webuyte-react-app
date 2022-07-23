@@ -28,7 +28,7 @@ export const theme = {
     overlay: "#00000069",
   },
   font: {
-    family: "'Montserrat', 'sans-serif'",
+    family: "'Montserrat', sans-serif",
     largeXXX: {
       size: "3rem", // 48px
       lineHeight: "3.625rem", // 58

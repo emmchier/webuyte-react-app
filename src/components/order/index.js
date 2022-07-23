@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/cartContext";
-import Button from "../common/button";
-import Heading from "../common/heading";
-import Section from "../common/section";
-import Text from "../common/text";
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../../context';
+import Button from '../common/button';
+import Heading from '../common/heading';
+import Section from '../common/section';
+import Text from '../common/text';
 
-import { CloseOrderContent, CloseOrderInfo, TextContainer } from "./styles";
+import { CloseOrderContent, CloseOrderInfo, TextContainer } from './styles';
 
 const OrderDetailPage = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const OrderDetailPage = () => {
 
   const closeOrder = () => {
     setOrder({});
-    navigate("/");
+    navigate('/');
   };
 
   return (
