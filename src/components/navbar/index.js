@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { NavLink } from 'react-router-dom';
+import { FavouriteContext } from '../../context';
 import { navList } from '../../domain/navigationList';
-import { LikeStrokeIcon } from '../../ui/icons';
+import { LikeFullIcon, LikeStrokeIcon } from '../../ui/icons';
 import Container from '../common/container';
 import Heading from '../common/heading';
 import Dropdown from '../dropdown';
+import FavItem from '../fav-item';
 import CartWidget from './cart-widget';
 import NavItem from './navItem';
 
@@ -15,7 +17,7 @@ const Navbar = () => {
   const getNavLink = (id, item) => {
     switch (id) {
       case 'favoritos':
-        return <LikeStrokeIcon />;
+        return <FavItem />;
       case 'categorias':
         return <Dropdown>{item}</Dropdown>;
       case 'cart':

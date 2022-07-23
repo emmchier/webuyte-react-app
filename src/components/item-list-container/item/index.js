@@ -17,12 +17,23 @@ import {
   ImageContainer,
   SecondaryInfo,
   TitlesContainer,
-  LikeContainer,
   HeaderInfo,
 } from './styles';
 
 const Item = ({ item }) => {
-  const { id, pictureUrl, alt, title, cellar, variety, price, category, isNew, isReserva } = item;
+  const {
+    id,
+    pictureUrl,
+    alt,
+    title,
+    cellar,
+    variety,
+    price,
+    category,
+    isNew,
+    isReserva,
+    isFavourite,
+  } = item;
 
   return (
     <Content>
@@ -37,7 +48,7 @@ const Item = ({ item }) => {
             <span>$</span>
             {price && price}
           </Text>
-          <LikeButton />
+          <LikeButton item={item} isFavourite={isFavourite} />
         </HeaderInfo>
         <TitlesContainer>
           <Title>

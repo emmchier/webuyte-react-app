@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-import { CartContext } from '../../context';
+import { FavouriteContext } from '../../context';
 import Section from '../common/section';
-// import ItemList from '../item-list-container/item-list';
+import ItemList from '../item-list-container/item-list';
 
 const FavouriteListContainer = () => {
-  const { loading, favourites } = useContext(CartContext);
-  console.log(favourites);
+  const { getFavourites, loadingFavourites, favouriteList } = useContext(FavouriteContext);
 
-  // return <Section>{loading ? <h4>Cargando...</h4> : <ItemList items={favourites} />}</Section>;
-  return <Section>{loading ? <h4>Cargando...</h4> : <h4>FAVORITOS</h4>}</Section>;
+  useEffect(() => {
+    getFavourites();
+    console.log('favourites');
+  }, []);
+
+  return (
+    <Section>
+      {loadingFavourites ? <h4>Cargando...</h4> : <ItemList items={favouriteList} />}
+    </Section>
+  );
 };
 
 export default FavouriteListContainer;

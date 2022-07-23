@@ -9,10 +9,12 @@ const Button = ({
   color = 'primary',
   onMouseEnter,
   onMouseLeave,
+  onClick,
   ...rest
 }) => {
   return (
     <ButtonContainer
+      onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       aria-label={ariaLabel}
