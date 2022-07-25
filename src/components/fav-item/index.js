@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import { FavouriteContext } from '../../context';
-import { LikeFullIcon, LikeStrokeIcon } from '../../ui/icons';
+import { LikeStrokeIcon } from '../../ui/icons';
 
 const FavItem = () => {
   const { favouriteList } = useContext(FavouriteContext);
   console.log(favouriteList);
 
-  const changeIcon = () => (favouriteList.length <= 0 ? <LikeStrokeIcon /> : <LikeFullIcon />);
+  const changeIcon = () =>
+    favouriteList.length >= 1 ? <LikeStrokeIcon /> : <LikeStrokeIcon color="#ccc" />;
 
   useEffect(() => {
     changeIcon();

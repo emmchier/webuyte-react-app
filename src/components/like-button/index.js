@@ -17,6 +17,11 @@ const LikeButton = ({ item, isFavourite }) => {
 
   const handleClick = () => {
     setIsActive(!isActive);
+    // if (!isActive) {
+    //   addFavourite(item);
+    // } else {
+    //   deleteFavourite(item.id);
+    // }
     if (isFavourite === true) {
       addFavourite(item, false);
     } else {
