@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Container from '../../../atoms/container';
+
 import Section from '../../../atoms/section';
 import ProductItem from '../../product/product-item';
 
