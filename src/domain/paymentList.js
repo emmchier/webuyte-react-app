@@ -1,18 +1,18 @@
 export const payments = [
   {
     id: 0,
-    paymentName: "visa",
+    paymentName: 'visa',
   },
   {
     id: 1,
-    paymentName: "mastercard",
+    paymentName: 'mastercard',
   },
   {
     id: 2,
-    paymentName: "american",
+    paymentName: 'american',
   },
   {
     id: 3,
-    paymentName: "more",
+    paymentName: 'more',
   },
 ];

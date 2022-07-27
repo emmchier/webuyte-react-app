@@ -9,18 +9,18 @@ export const CartProvider = ({ children }) => {
   const [cartUnities, setCartUnities] = useState(0);
   const [order, setOrder] = useState({});
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loadingCart, setLoadingCart] = useState(false);
   const [loadingOrders, setLoadingOrders] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoadingCart(true);
     const items = collection(db, 'orders');
     getDocs(items)
       .then(({ docs }) => {
         const orderList = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         setOrders(orderList);
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLoadingCart(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     console.log('cambio');
   }, []);
@@ -83,8 +83,8 @@ export const CartProvider = ({ children }) => {
         addProductToCart,
         removeProductFromCart,
         clearCart,
-        loading,
-        setLoading,
+        loadingCart,
+        setLoadingCart,
         order,
         setOrder,
         orders,

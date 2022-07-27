@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from 'react';
 
-import FavouriteListContainer from "../../components/favourite-list-container";
+import Section from '../../components/atomic-design/atoms/section';
+import FavouriteList from '../../components/atomic-design/organisms/favourite/favourites-list';
+import { FavouriteContext } from '../../context';
 
 const FavouritesPage = () => {
-  return <FavouriteListContainer />;
+  const { getFavourites, loadingFavourites, favouriteList } = useContext(FavouriteContext);
+
+  useEffect(() => {
+    getFavourites();
+    console.log('favourites');
+  }, []);
+
+  return (
+    <Section>
+      {loadingFavourites ? <h4>Cargando...</h4> : <FavouriteList items={favouriteList} />}
+    </Section>
+  );
 };
 
 export default FavouritesPage;
