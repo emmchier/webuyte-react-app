@@ -3,8 +3,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { FavouriteContext } from '../../../../context';
 import { LikeFullIcon, LikeStrokeIcon } from '../../../ui/icons';
 import Button from '../button';
+import { SkelletonLikeButton } from './styles';
 
-const LikeButton = ({ item, isFavourite }) => {
+const LikeButton = ({ item, isFavourite, isSkeleton = false }) => {
   const [isActive, setIsActive] = useState(false);
   const { addFavourite } = useContext(FavouriteContext);
 
@@ -31,9 +32,17 @@ const LikeButton = ({ item, isFavourite }) => {
   };
 
   return (
-    <Button onClick={handleClick} ariaLabel="like icon active" variant="icon">
-      {isActive === true ? <LikeFullIcon /> : <LikeStrokeIcon />}
-    </Button>
+    <>
+      {isSkeleton === false ? (
+        <Button onClick={handleClick} ariaLabel="like icon active" variant="icon">
+          {isActive === true ? <LikeFullIcon /> : <LikeStrokeIcon />}
+        </Button>
+      ) : (
+        <SkelletonLikeButton>
+          <LikeFullIcon color="#dddcdc" />
+        </SkelletonLikeButton>
+      )}
+    </>
   );
 };
 

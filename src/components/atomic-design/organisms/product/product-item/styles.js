@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components';
-import { pulse } from '../../../../ui/animations';
+import styled from 'styled-components';
 
 export const Content = styled.li`
   background-color: ${({ theme }) => theme.color.white};

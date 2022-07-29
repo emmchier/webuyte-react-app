@@ -12,6 +12,8 @@ const Box = ({
   height = 'auto',
   margin = '0',
   padding = '0',
+  translate = '',
+  position,
 }) => (
   <Content
     display={display}
@@ -22,6 +24,8 @@ const Box = ({
     height={height}
     margin={margin}
     padding={padding}
+    translate={translate}
+    position={position}
   >
     {children}
   </Content>

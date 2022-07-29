@@ -77,6 +77,8 @@ export const Content = styled.div`
   ${({ flexDirection }) => directionStyles(flexDirection)};
   width: ${({ width }) => width || 'auto'};
   height: ${({ height }) => height || 'auto'};
+  position: ${({ position }) => position};
   ${({ margin }) => `margin${margin}`};
   ${({ padding }) => `padding${padding}`};
+  ${({ translate }) => `transform: translate${translate}`};
 `;
