@@ -1,33 +1,38 @@
 import React from 'react';
 
-import { Container, Row, Col } from 'react-grid-system';
-import EmptyList from '../../../molecules/empty-list';
+import Col from '../../../molecules/grid/col';
+import Row from '../../../molecules/grid/row';
+import SkeletonList from '../../skelleton/skelleton-list';
 import ProductItem from '../product-item';
 
-import { List, Adjust } from './styles';
-
 const ProductList = ({ items }) => {
-  const emptyTitle = [
-    'Ocurrió un error al cargar los productos.',
-    <span>Porfavor volvé a recargar la web</span>,
-  ];
-
   return (
-    <Container component={Adjust} className="animate__animated animate__fadeIn">
+    <div className="animate__animated animate__fadeIn">
       {items.length > 0 ? (
-        <List>
-          <Row gutterWidth={15}>
-            {items.map((item) => (
-              <Col key={item.id} xs={12} sm={4} md={3} lg={2}>
-                <ProductItem item={item} />
-              </Col>
-            ))}
-          </Row>
-        </List>
+        <Row gap={5}>
+          {items.map((item) => (
+            <Col key={item.id} xs={12} sm={3} md={3} lg={3} xlg={3}>
+              <ProductItem
+                id={item.id}
+                pictureUrl={item.pictureUrl}
+                alt={item.alt}
+                title={item.title}
+                cellar={item.cellar}
+                variety={item.variety}
+                price={item.price}
+                category={item.category}
+                isNew={item.isNew}
+                isReserva={item.isReserva}
+                isFavourite={item.isFavourite}
+                isSkeleton={false}
+              />
+            </Col>
+          ))}
+        </Row>
       ) : (
-        <EmptyList title={emptyTitle} />
+        <SkeletonList num={16} xs={12} sm={3} md={3} lg={3} xlg={3} />
       )}
-    </Container>
+    </div>
   );
 };
 

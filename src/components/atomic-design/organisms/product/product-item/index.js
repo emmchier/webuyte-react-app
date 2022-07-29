@@ -2,13 +2,14 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { ReservaIcon } from '../../../../ui/icons';
+import { EmptyListIcon, ReservaIcon } from '../../../../ui/icons';
 import Button from '../../../atoms/button';
 import Heading from '../../../atoms/heading';
 import LikeButton from '../../../atoms/like-button';
 import Tag from '../../../atoms/tag';
 import Text from '../../../atoms/text';
 import EmptyImg from '../../../../../assets/empty-img.svg';
+import EllipsizedText from '../../../atoms/ellipsized-text';
 
 import {
   Content,
@@ -19,10 +20,26 @@ import {
   SecondaryInfo,
   TitlesContainer,
   HeaderInfo,
+  OptionsContainer,
+  EmptyContent,
 } from './styles';
+import SkelletonImage from '../../skelleton/skelleton-image';
 
-const ProductItem = ({ item }) => {
-  const {
+const ProductItem = ({
+  id,
+  pictureUrl,
+  alt,
+  title,
+  cellar,
+  variety,
+  price,
+  category,
+  isNew,
+  isReserva,
+  isFavourite,
+  isSkeleton = false,
+}) => {
+  const item = {
     id,
     pictureUrl,
     alt,
@@ -34,17 +51,26 @@ const ProductItem = ({ item }) => {
     isNew,
     isReserva,
     isFavourite,
-  } = item;
+  };
 
   return (
     <Content>
-      <ImageContainer>
+      {isSkeleton === false ? (
         <Link to={`/item/${id}`}>
-          <Image src={pictureUrl ? pictureUrl : EmptyImg} alt={alt && alt} />
+          <ImageContainer>
+            <SkelletonImage />
+            <Image src={pictureUrl ? pictureUrl : EmptyImg} alt={alt && alt} />
+            <OptionsContainer>
+              <span>
+                {isNew && <Tag title="Nuevo" />}
+                {isReserva && <ReservaIcon />}
+              </span>
+            </OptionsContainer>
+          </ImageContainer>
         </Link>
-        <span>{isNew && <Tag title="Nuevo" />}</span>
-        {isReserva && <ReservaIcon />}
-      </ImageContainer>
+      ) : (
+        <SkelletonImage />
+      )}
       <ProductInfo>
         <HeaderInfo>
           <Text weight="semiBold">
@@ -55,10 +81,14 @@ const ProductItem = ({ item }) => {
         </HeaderInfo>
         <TitlesContainer>
           <Title>
-            <Heading variant="h5">{title && title}</Heading>
+            <EllipsizedText width={170}>
+              <Heading variant="h5">{title && title}</Heading>
+            </EllipsizedText>
           </Title>
           <Title>
-            <Heading variant="h6">{cellar && cellar}</Heading>
+            <EllipsizedText width={150}>
+              <Heading variant="h6">{cellar && cellar}</Heading>
+            </EllipsizedText>
           </Title>
         </TitlesContainer>
         <SecondaryInfo>

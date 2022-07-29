@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { pulse } from '../../../../ui/animations';
 
 export const Content = styled.li`
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: ${({ theme }) => theme.shadow.normal};
   overflow: hidden;
   border-radius: ${({ theme }) => theme.border.radius.main};
-  margin-bottom: ${({ theme }) => theme.spacing(4)};
   transition: ${({ theme }) => theme.transition.main};
   color: ${({ theme }) => theme.color.text.primary};
 
@@ -25,7 +25,8 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  max-height: 250px;
+  height: 320px;
+  max-height: 320px;
   position: relative;
 
   svg {
@@ -34,13 +35,30 @@ export const ImageContainer = styled.div`
   }
 
   span {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+`;
+
+export const OptionsContainer = styled.div`
+  position: absolute;
+  width: 100%;
+`;
+
+export const EmptyContent = styled.div`
+  img {
     position: absolute;
+    background-color: ${({ theme }) => theme.color.disabled};
+    width: 100%;
   }
 `;
 
 export const Image = styled.img`
   width: 100%;
   background-color: ${({ theme }) => theme.color.disabled};
+  position: absolute;
+  bottom: 0;
 `;
 
 export const HeaderInfo = styled.div`
@@ -75,13 +93,9 @@ export const ProductInfo = styled.div`
 `;
 
 export const TitlesContainer = styled.div`
-  height: ${({ theme }) => theme.spacing(15)};
   margin-top: ${({ theme }) => theme.spacing(3)};
   padding: 0;
-  position: relative;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
   flex-direction: column;
 `;
 
@@ -101,6 +115,9 @@ export const Price = styled.p`
   color: ${({ theme }) => theme.color.grey};
   font-size: ${({ theme }) => theme.font.medium.size};
   font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const SecondaryInfo = styled.div`
@@ -113,5 +130,9 @@ export const SecondaryInfo = styled.div`
   p {
     font-size: ${({ theme }) => theme.font.smallX.size};
     line-height: ${({ theme }) => theme.font.smallX.lineHeight};
+    max-width: 142px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 `;
