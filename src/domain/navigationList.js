@@ -6,16 +6,22 @@ export const navList = [
     to: '/mis-compras',
   },
   {
-    id: 'categorias',
-    navItem: 'Categorías',
-    isLink: false,
-    to: '',
+    id: 'promociones',
+    navItem: 'Promociones',
+    isLink: true,
+    to: '/promociones',
   },
   {
     id: 'favoritos',
     navItem: '',
-    isLink: true,
-    to: '/favoritos',
+    isLink: false,
+    to: '',
+  },
+  {
+    id: 'notificaciones',
+    navItem: '',
+    isLink: false,
+    to: '',
   },
   {
     id: 'cart',

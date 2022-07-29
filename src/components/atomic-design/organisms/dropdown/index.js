@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
-import { categories } from '../../../../domain/categoryList';
+import Heading from '../../atoms/heading';
 
-import { Container, Content, DropdownContent, DropdownItem, DropdownMenu } from './styles';
+import { Container, Content, DropdownContent, DropdownItem, DropdownMenu, Header } from './styles';
 
-const Dropdown = ({ children }) => {
-  const [show, setShow] = useState(false);
+const Dropdown = ({ item, title, children, showIt = false }) => {
+  const [show, setShow] = useState(showIt);
 
   return (
     <Container
@@ -14,7 +13,7 @@ const Dropdown = ({ children }) => {
       onMouseLeave={() => setShow(false)}
       onFocus={() => setShow(true)}
     >
-      <DropdownItem>{children}</DropdownItem>
+      <DropdownItem>{item}</DropdownItem>
       <Content
         onMouseOver={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
@@ -22,14 +21,10 @@ const Dropdown = ({ children }) => {
       >
         <DropdownMenu show={show && show} fade={show} onMouseLeave={() => setShow(false)}>
           <DropdownContent>
-            {categories?.map((category) => (
-              <Link
-                to={category.categoryId !== 'todas' ? `/${category.categoryId}` : '/'}
-                key={category.categoryId}
-              >
-                <li>{category.categoryName}</li>
-              </Link>
-            ))}
+            <Header>
+              <Heading variant="h5">{title}</Heading>
+            </Header>
+            {children}
           </DropdownContent>
         </DropdownMenu>
       </Content>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   @media only screen and (${({ theme }) => theme.breakpoints.mobile}) {
@@ -10,8 +10,10 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
+  position: relative;
+
   &:after {
-    content: ".";
+    content: '.';
     visibility: collapse;
   }
 `;
@@ -32,10 +34,10 @@ export const DropdownItem = styled.span`
 
 export const DropdownMenu = styled.div`
   position: absolute;
+  right: 0;
   display: none;
-  ${({ show }) => (show ? `height: auto; display: inherit;` : "height: 0")};
-  animation: ${({ fade }) =>
-    fade ? "fadeIn .1s linear" : "fadeOut .1s linear"};
+  ${({ show }) => (show ? `height: auto; display: inherit;` : 'height: 0')};
+  animation: ${({ fade }) => (fade ? 'fadeIn .1s linear' : 'fadeOut .1s linear')};
   cursor: pointer;
   padding-left: 0;
   z-index: 999;
@@ -75,17 +77,13 @@ export const DropdownMenu = styled.div`
   }
 `;
 
-export const DropdownContent = styled.ul`
-  color: ${({ theme }) => theme.color.pallete.primary};
+export const DropdownContent = styled.div`
   padding: 0;
   margin: 0;
   list-style: none;
   text-decoration: none;
-
-  li {
-    font-size: ${({ theme }) => theme.font.small.size};
-    ${({ theme }) => `padding: ${theme.spacing(3)} ${theme.spacing(6)}`};
-  }
+  width: 45vh;
+  color: ${({ theme }) => theme.color.black};
 
   @media only screen and (${({ theme }) => theme.breakpoints.mobile}) {
     display: flex;
@@ -93,4 +91,26 @@ export const DropdownContent = styled.ul`
     flex-direction: column;
     width: 100%;
   }
+`;
+
+export const Header = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: ${({ theme }) => theme.shadow.main};
+
+  h5 {
+    margin: ${({ theme }) => theme.spacing(3)};
+  }
+`;
+
+export const DropdownEmpty = styled.div`
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.color.disabled};
+  color: ${({ theme }) => theme.color.grey.dark};
 `;

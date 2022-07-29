@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const colorStyles = (theme, color) =>
   ({
@@ -8,9 +8,14 @@ const colorStyles = (theme, color) =>
       border: 1px solid ${theme.color.pallete.primary};
     `,
     secondary: css`
-      color: ${theme.color.pallete.secondary};
-      background-color: ${theme.color.pallete.secondary};
-      border: 1px solid ${theme.color.pallete.secondary};
+      color: ${theme.color.pallete.primaryDark} !important;
+      background-color: ${theme.color.background.light};
+      border: 1px solid ${theme.color.background.light};
+
+      &:hover {
+        background-color: #f8dde8 !important;
+        border: 1px solid #f8dde8 !important;
+      }
     `,
   }[color]);
 
@@ -130,7 +135,7 @@ const ButtonContainer = styled.button`
   justify-content: center;
   cursor: pointer;
   border: none;
-  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => `padding: ${theme.spacing(3)} ${theme.spacing(4)}`};
   border-radius: ${({ theme }) => theme.border.radius.main};

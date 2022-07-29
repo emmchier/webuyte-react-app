@@ -2,9 +2,11 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { navList } from '../../../../domain/navigationList';
+import { NotificationIcon } from '../../../ui/icons';
 import CartWidget from '../../atoms/cart-widget';
 import Container from '../../atoms/container';
 import Heading from '../../atoms/heading';
+import CartDropdown from '../../organisms/cart/cart-dropdown';
 import Dropdown from '../../organisms/dropdown';
 import FavouriteItem from '../../organisms/favourite/favourite-item';
 import NavItem from './navItem';
@@ -15,11 +17,27 @@ const Navbar = () => {
   const getNavLink = (id, item) => {
     switch (id) {
       case 'favoritos':
-        return <FavouriteItem />;
-      case 'categorias':
-        return <Dropdown>{item}</Dropdown>;
+        return (
+          <Dropdown title="Favoritos" item={<FavouriteItem />}>
+            lililili
+          </Dropdown>
+        );
+      case 'notificaciones':
+        return (
+          <Dropdown
+            title="Notificaciones"
+            emptyMessage="No hay notificaciones"
+            item={<NotificationIcon />}
+          >
+            lelelelele
+          </Dropdown>
+        );
       case 'cart':
-        return <CartWidget />;
+        return (
+          <Dropdown title="Carrito" item={<CartWidget />}>
+            <CartDropdown emptyMessage="Tu carrito está vacío" />
+          </Dropdown>
+        );
       default:
         return item;
     }

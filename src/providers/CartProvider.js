@@ -11,6 +11,8 @@ export const CartProvider = ({ children }) => {
   const [cartTotalPrice, setCartTotalPrice] = useState(0);
   const [loadingCart, setLoadingCart] = useState(false);
   const [loadingOrders, setLoadingOrders] = useState(false);
+  const [isEmptyCart, setIsEmptyCart] = useState(true);
+  const [openCartDropdown, setOpenCartDropdown] = useState(false);
 
   useEffect(() => {
     setLoadingCart(true);
@@ -91,6 +93,10 @@ export const CartProvider = ({ children }) => {
         setOrders,
         loadingOrders,
         setLoadingOrders,
+        isEmptyCart,
+        setIsEmptyCart,
+        openCartDropdown,
+        setOpenCartDropdown,
       }}
     >
       {children}
