@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { NavLink } from 'react-router-dom';
+import { CartContext } from '../../../../context';
 import { navList } from '../../../../domain/navigationList';
 import { NotificationIcon } from '../../../ui/icons';
 import CartWidget from '../../atoms/cart-widget';
@@ -14,6 +15,8 @@ import NavItem from './navItem';
 import { Brand, Content, Header, Nav, NavList } from './styles';
 
 const Navbar = () => {
+  const { cartList, cartUnities } = useContext(CartContext);
+
   const getNavLink = (id, item) => {
     switch (id) {
       case 'favoritos':
@@ -34,7 +37,14 @@ const Navbar = () => {
         );
       case 'cart':
         return (
-          <Dropdown title="Carrito" item={<CartWidget />}>
+          <Dropdown
+            title="Carrito"
+            item={<CartWidget />}
+            headerAction={
+              cartList.length > 0 &&
+              `(${cartUnities}) ${cartList.length > 1 ? 'productos' : 'producto'}`
+            }
+          >
             <CartDropdown emptyMessage="Tu carrito está vacío" />
           </Dropdown>
         );

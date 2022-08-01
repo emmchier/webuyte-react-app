@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 import Heading from '../../atoms/heading';
+import Text from '../../atoms/text';
 
 import { Container, Content, DropdownContent, DropdownItem, DropdownMenu, Header } from './styles';
 
-const Dropdown = ({ item, title, children, showIt = false }) => {
+const Dropdown = ({ item, title, children, showIt = false, headerAction }) => {
   const [show, setShow] = useState(showIt);
 
   return (
@@ -23,6 +24,7 @@ const Dropdown = ({ item, title, children, showIt = false }) => {
           <DropdownContent>
             <Header>
               <Heading variant="h5">{title}</Heading>
+              {headerAction && <Text>{headerAction}</Text>}
             </Header>
             {children}
           </DropdownContent>

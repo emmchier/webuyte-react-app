@@ -32,7 +32,7 @@ const CartItem = ({ product, removeProductFromCart }) => {
             </HorizontalContent>
           </Info>
           <PriceContainer>
-            <Text>$ {price && (price / 6).toFixed(2)}</Text>
+            <Text>$ {price && (price * quantity).toFixed(2)}</Text>
           </PriceContainer>
         </InfoContent>
         <InfoContent>

@@ -14,7 +14,7 @@ export const CartProvider = ({ children }) => {
   const [isEmptyCart, setIsEmptyCart] = useState(true);
   const [openCartDropdown, setOpenCartDropdown] = useState(false);
 
-  useEffect(() => {
+  const getOrders = () => {
     setLoadingCart(true);
     const items = collection(db, 'orders');
     getDocs(items)
@@ -23,6 +23,10 @@ export const CartProvider = ({ children }) => {
         setOrders(orderList);
       })
       .finally(() => setLoadingCart(false));
+  };
+
+  useEffect(() => {
+    getOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     console.log('cambio');
   }, []);
@@ -36,6 +40,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const addProductToCart = (product, quantity) => {
+    // si currentOrder no existe,
+    // agregar ORDER con productos + id + fecha + TOTAL
+    // else = update de currentOrder.products
     const isProductInCart = getProductById(product.id);
     if (!isProductInCart) {
       cartActions(
@@ -51,17 +58,18 @@ export const CartProvider = ({ children }) => {
         cartUnities + quantity
       );
     } else {
-      cartActions(
-        cartList.map((item) => {
-          if (item.id === product.id) {
-            item.quantity += quantity;
-            item.subtotal += product.price * quantity;
-          }
-          return item;
-        }),
-        cartTotalPrice + product.price * quantity,
-        cartUnities + quantity
-      );
+      // cartActions(
+      //   cartList.map((item) => {
+      //     if (item.id === product.id) {
+      //       item.quantity += quantity;
+      //       item.subtotal += product.price * quantity;
+      //     }
+      //     return item;
+      //   }),
+      //   cartTotalPrice + product.price * quantity,
+      //   cartUnities + quantity
+      // );
+      alert('el producto ya está en el carrito');
     }
   };
 
@@ -79,6 +87,7 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        getOrders,
         cartList,
         cartUnities,
         cartTotalPrice,

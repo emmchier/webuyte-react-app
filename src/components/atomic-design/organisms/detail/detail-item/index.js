@@ -93,17 +93,18 @@ const DetailItem = ({ item }) => {
     }
   }, [count]);
 
-  useEffect(() => {
-    const items = id
-      ? query(collection(db, 'items'), where('cellar', '==', cellar))
-      : collection(db, 'items');
-    getDocs(items).then(({ docs }) => {
-      const ref = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      const related = ref.filter((item) => item.id !== id);
-      setRelatedProducts(related);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // TODO: FILTRAR DESDE EL CONTEXT, NO HACER CONSULTA.
+  // useEffect(() => {
+  //   const items = id
+  //     ? query(collection(db, 'items'), where('cellar', '==', cellar))
+  //     : collection(db, 'items');
+  //   getDocs(items).then(({ docs }) => {
+  //     const ref = docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  //     const related = ref.filter((item) => item.id !== id);
+  //     setRelatedProducts(related);
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div className="animate__animated animate__fadeIn">

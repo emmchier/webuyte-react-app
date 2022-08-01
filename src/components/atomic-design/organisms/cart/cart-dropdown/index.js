@@ -11,28 +11,30 @@ const CartDropdown = ({ emptyMessage }) => {
     useContext(CartContext);
 
   useEffect(() => {
-    cartList.length === 0 ? setIsEmptyCart(true) : setIsEmptyCart(false);
-  }, []);
+    cartList.length > 0 ? setIsEmptyCart(false) : setIsEmptyCart(true);
+  }, [cartList.length]);
 
   return (
     <Content>
       {isEmptyCart === false ? (
-        <CartDropdownList items={cartList} removeProductFromCart={removeProductFromCart} />
+        <>
+          <CartDropdownList items={cartList} removeProductFromCart={removeProductFromCart} />
+          <Footer>
+            <Link to="/mi-carrito">
+              <Button variant="contained" color="primary" ariaLabel="link al carrito">
+                Ver carrito
+              </Button>
+            </Link>
+            <Link to="/comprar-ahora">
+              <Button color="secondary" ariaLabel="link a comprar ahora">
+                Comprar ahora
+              </Button>
+            </Link>
+          </Footer>
+        </>
       ) : (
         <DropdownEmpty>{emptyMessage}</DropdownEmpty>
       )}
-      <Footer>
-        <Link to="/mi-carrito">
-          <Button variant="contained" color="primary" ariaLabel="link al carrito">
-            Ver carrito
-          </Button>
-        </Link>
-        <Link to="/comprar-ahora">
-          <Button color="secondary" ariaLabel="link a comprar ahora">
-            Comprar ahora
-          </Button>
-        </Link>
-      </Footer>
     </Content>
   );
 };

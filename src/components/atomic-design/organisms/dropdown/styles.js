@@ -96,8 +96,8 @@ export const DropdownContent = styled.div`
 export const Header = styled.div`
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
   box-shadow: ${({ theme }) => theme.shadow.main};
 
   h5 {

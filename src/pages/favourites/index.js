@@ -10,7 +10,7 @@ const FavouritesPage = () => {
   useEffect(() => {
     getFavourites();
     console.log('favourites');
-  }, []);
+  }, [favouriteList.length]);
 
   return (
     <Section>

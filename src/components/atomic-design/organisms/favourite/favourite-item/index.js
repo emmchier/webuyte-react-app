@@ -8,11 +8,11 @@ const FavouriteItem = () => {
   console.log(favouriteList);
 
   const changeIcon = () =>
-    favouriteList.length >= 1 ? <LikeStrokeIcon /> : <LikeStrokeIcon color="#ccc" />;
+    favouriteList.length > 0 ? <LikeStrokeIcon /> : <LikeStrokeIcon color="#ccc" />;
 
   useEffect(() => {
     changeIcon();
-  }, []);
+  }, [favouriteList.length]);
 
   return <>{changeIcon()}</>;
 };
